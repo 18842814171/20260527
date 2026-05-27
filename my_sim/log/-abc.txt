@@ -1,0 +1,4147 @@
+Instruction table initialized with 41 entries
+Interrupts enabled
+Loading ELF: out/abc
+Program entry point: 0x0x10144
+Main address: 0x0x103d4
+
+=== 运行前（设备/内存/统计） ===
+主存: 容量 262144 bytes, 基址 0x10000
+      已写入最高字节地址 0x2000c (相对基址 +65548 bytes)
+Timer MTIME: 0
+UART: TX 字符(送主机) 0, RX 字符(程序已读走) 0, 当前 RX FIFO 0
+
+[UART: 主机键盘 → MMIO RX；Ctrl+C 结束 stdin 线程]
+[模拟器] 未指定步数上限，使用默认 CPU::kDefaultRunStepLimit=10000000 周期
+
+========== Running ==========
+==============================
+Step: 0
+==============================
+  IF pc: 0x10144
+    raw_inst: 0x1117
+==============================
+Step: 1
+==============================
+  Decoded Instruction: AUIPC
+  ID pc: 0x10144
+    rs1=x0 rs2=x0 rd=x2
+    imm=0x1000
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10148
+    raw_inst: 0x2ec10113
+==============================
+Step: 2
+==============================
+  EXEC: AUIPC rd=x2 rs1=x0 rs2=x0 | x0=0x0 x0=0x0 imm=0x1000
+execute_inst: id=0x17 (AUIPC)
+Instruction ID AUIPC 0x17
+AUIPC: PC(0x10144) + IMM(0x1000) = 0x11144
+  EX result: 0x11144
+  Decoded Instruction: ADDI
+  ID pc: 0x10148
+    rs1=x2 rs2=x12 rd=x2
+    imm=0x2ec
+    rs1_val=0x20010 rs2_val=0x0
+  IF pc: 0x1014c
+    raw_inst: 0x288000ef
+==============================
+Step: 3
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x12 | x2=0x11144 x12=0x0 imm=0x2ec
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 69956
+Input2 source = Immediate
+Selected Input2 value = 748
+ADDI Result: 70704
+  EX result: 0x11430
+  Decoded Instruction: JAL
+  ID pc: 0x1014c
+    rs1=x0 rs2=x8 rd=x1
+    imm=0x288
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10150
+    raw_inst: 0x513
+==============================
+Step: 4
+==============================
+  WB: r2 = 0x11144 (from ALU)
+  EXEC: JAL rd=x1 rs1=x0 rs2=x8 | x0=0x0 x8=0x0 imm=0x288
+  JAL: target=0x103d4 link=0x10150
+ FLUSH: branch/jump taken, PC -> 0x103d4
+  IF pc: 0x103d4
+    raw_inst: 0xff010113
+==============================
+Step: 5
+==============================
+  WB: r2 = 0x11430 (from ALU)
+  Decoded Instruction: ADDI
+  ID pc: 0x103d4
+    rs1=x2 rs2=x16 rd=x2
+    imm=0xfffffff0
+    rs1_val=0x11430 rs2_val=0x0
+  IF pc: 0x103d8
+    raw_inst: 0x112623
+==============================
+Step: 6
+==============================
+  WB: r1 = 0x10150 (from ALU)
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x16 | x2=0x11430 x16=0x0 imm=0xfffffff0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70704
+Input2 source = Immediate
+Selected Input2 value = 4294967280
+ADDI Result: 70688
+  EX result: 0x11420
+  Decoded Instruction: SW
+  ID pc: 0x103d8
+    rs1=x2 rs2=x1 rd=x12
+    imm=0xc
+    rs1_val=0x11430 rs2_val=0x10150
+  IF pc: 0x103dc
+    raw_inst: 0x812423
+==============================
+Step: 7
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x2 rs2=x1 | x2=0x11420 x1=0x10150 imm=0xc
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1142c, Data=0x10150
+  EX result: 0x1142c
+  Decoded Instruction: SW
+  ID pc: 0x103dc
+    rs1=x2 rs2=x8 rd=x8
+    imm=0x8
+    rs1_val=0x11430 rs2_val=0x0
+  IF pc: 0x103e0
+    raw_inst: 0x1010413
+==============================
+Step: 8
+==============================
+  WB: r2 = 0x11420 (from ALU)
+  SW addr: 0x1142c
+  EXEC: SW rd=x8 rs1=x2 rs2=x8 | x2=0x11420 x8=0x0 imm=0x8
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11428, Data=0x0
+  EX result: 0x11428
+  Decoded Instruction: ADDI
+  ID pc: 0x103e0
+    rs1=x2 rs2=x16 rd=x8
+    imm=0x10
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x103e4
+    raw_inst: 0xf65ff0ef
+==============================
+Step: 9
+==============================
+  SW addr: 0x11428
+  EXEC: ADDI rd=x8 rs1=x2 rs2=x16 | x2=0x11420 x16=0x0 imm=0x10
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70688
+Input2 source = Immediate
+Selected Input2 value = 16
+ADDI Result: 70704
+  EX result: 0x11430
+  Decoded Instruction: JAL
+  ID pc: 0x103e4
+    rs1=x31 rs2=x5 rd=x1
+    imm=0xffffff64
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x103e8
+    raw_inst: 0x300593
+==============================
+Step: 10
+==============================
+  EXEC: JAL rd=x1 rs1=x31 rs2=x5 | x31=0x0 x5=0x0 imm=0xffffff64
+  JAL: target=0x10348 link=0x103e8
+ FLUSH: branch/jump taken, PC -> 0x10348
+  IF pc: 0x10348
+    raw_inst: 0xff010113
+==============================
+Step: 11
+==============================
+  WB: r8 = 0x11430 (from ALU)
+  Decoded Instruction: ADDI
+  ID pc: 0x10348
+    rs1=x2 rs2=x16 rd=x2
+    imm=0xfffffff0
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x1034c
+    raw_inst: 0x112623
+==============================
+Step: 12
+==============================
+  WB: r1 = 0x103e8 (from ALU)
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x16 | x2=0x11420 x16=0x0 imm=0xfffffff0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70688
+Input2 source = Immediate
+Selected Input2 value = 4294967280
+ADDI Result: 70672
+  EX result: 0x11410
+  Decoded Instruction: SW
+  ID pc: 0x1034c
+    rs1=x2 rs2=x1 rd=x12
+    imm=0xc
+    rs1_val=0x11420 rs2_val=0x103e8
+  IF pc: 0x10350
+    raw_inst: 0x812423
+==============================
+Step: 13
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x2 rs2=x1 | x2=0x11410 x1=0x103e8 imm=0xc
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1141c, Data=0x103e8
+  EX result: 0x1141c
+  Decoded Instruction: SW
+  ID pc: 0x10350
+    rs1=x2 rs2=x8 rd=x8
+    imm=0x8
+    rs1_val=0x11420 rs2_val=0x11430
+  IF pc: 0x10354
+    raw_inst: 0x1010413
+==============================
+Step: 14
+==============================
+  WB: r2 = 0x11410 (from ALU)
+  SW addr: 0x1141c
+  EXEC: SW rd=x8 rs1=x2 rs2=x8 | x2=0x11410 x8=0x11430 imm=0x8
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11418, Data=0x11430
+  EX result: 0x11418
+  Decoded Instruction: ADDI
+  ID pc: 0x10354
+    rs1=x2 rs2=x16 rd=x8
+    imm=0x10
+    rs1_val=0x11410 rs2_val=0x0
+  IF pc: 0x10358
+    raw_inst: 0xfa5ff0ef
+==============================
+Step: 15
+==============================
+  SW addr: 0x11418
+  EXEC: ADDI rd=x8 rs1=x2 rs2=x16 | x2=0x11410 x16=0x0 imm=0x10
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70672
+Input2 source = Immediate
+Selected Input2 value = 16
+ADDI Result: 70688
+  EX result: 0x11420
+  Decoded Instruction: JAL
+  ID pc: 0x10358
+    rs1=x31 rs2=x5 rd=x1
+    imm=0xffffffa4
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x1035c
+    raw_inst: 0x107b7
+==============================
+Step: 16
+==============================
+  EXEC: JAL rd=x1 rs1=x31 rs2=x5 | x31=0x0 x5=0x0 imm=0xffffffa4
+  JAL: target=0x102fc link=0x1035c
+ FLUSH: branch/jump taken, PC -> 0x102fc
+  IF pc: 0x102fc
+    raw_inst: 0xff010113
+==============================
+Step: 17
+==============================
+  WB: r8 = 0x11420 (from ALU)
+  Decoded Instruction: ADDI
+  ID pc: 0x102fc
+    rs1=x2 rs2=x16 rd=x2
+    imm=0xfffffff0
+    rs1_val=0x11410 rs2_val=0x0
+  IF pc: 0x10300
+    raw_inst: 0x112623
+==============================
+Step: 18
+==============================
+  WB: r1 = 0x1035c (from ALU)
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x16 | x2=0x11410 x16=0x0 imm=0xfffffff0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70672
+Input2 source = Immediate
+Selected Input2 value = 4294967280
+ADDI Result: 70656
+  EX result: 0x11400
+  Decoded Instruction: SW
+  ID pc: 0x10300
+    rs1=x2 rs2=x1 rd=x12
+    imm=0xc
+    rs1_val=0x11410 rs2_val=0x1035c
+  IF pc: 0x10304
+    raw_inst: 0x812423
+==============================
+Step: 19
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x2 rs2=x1 | x2=0x11400 x1=0x1035c imm=0xc
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1140c, Data=0x1035c
+  EX result: 0x1140c
+  Decoded Instruction: SW
+  ID pc: 0x10304
+    rs1=x2 rs2=x8 rd=x8
+    imm=0x8
+    rs1_val=0x11410 rs2_val=0x11420
+  IF pc: 0x10308
+    raw_inst: 0x1010413
+==============================
+Step: 20
+==============================
+  WB: r2 = 0x11400 (from ALU)
+  SW addr: 0x1140c
+  EXEC: SW rd=x8 rs1=x2 rs2=x8 | x2=0x11400 x8=0x11420 imm=0x8
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11408, Data=0x11420
+  EX result: 0x11408
+  Decoded Instruction: ADDI
+  ID pc: 0x10308
+    rs1=x2 rs2=x16 rd=x8
+    imm=0x10
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x1030c
+    raw_inst: 0x117b7
+==============================
+Step: 21
+==============================
+  SW addr: 0x11408
+  EXEC: ADDI rd=x8 rs1=x2 rs2=x16 | x2=0x11400 x16=0x0 imm=0x10
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70656
+Input2 source = Immediate
+Selected Input2 value = 16
+ADDI Result: 70672
+  EX result: 0x11410
+  Decoded Instruction: LUI
+  ID pc: 0x1030c
+    rs1=x2 rs2=x0 rd=x15
+    imm=0x11000
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x10310
+    raw_inst: 0x4207ae23
+==============================
+Step: 22
+==============================
+  EXEC: LUI rd=x15 rs1=x2 rs2=x0 | x2=0x11400 x0=0x0 imm=0x11000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x11000
+  EX result: 0x11000
+  Decoded Instruction: SW
+  ID pc: 0x10310
+    rs1=x15 rs2=x0 rd=x28
+    imm=0x43c
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10314
+    raw_inst: 0x117b7
+==============================
+Step: 23
+==============================
+  WB: r8 = 0x11410 (from ALU)
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: SW rd=x28 rs1=x15 rs2=x0 | x15=0x11000 x0=0x0 imm=0x43c
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1143c, Data=0x0
+  EX result: 0x1143c
+  Decoded Instruction: LUI
+  ID pc: 0x10314
+    rs1=x2 rs2=x0 rd=x15
+    imm=0x11000
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x10318
+    raw_inst: 0x4407a023
+==============================
+Step: 24
+==============================
+  WB: r15 = 0x11000 (from ALU)
+  SW addr: 0x1143c
+  EXEC: LUI rd=x15 rs1=x2 rs2=x0 | x2=0x11400 x0=0x0 imm=0x11000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x11000
+  EX result: 0x11000
+  Decoded Instruction: SW
+  ID pc: 0x10318
+    rs1=x15 rs2=x0 rd=x0
+    imm=0x440
+    rs1_val=0x11000 rs2_val=0x0
+  IF pc: 0x1031c
+    raw_inst: 0x117b7
+==============================
+Step: 25
+==============================
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: SW rd=x0 rs1=x15 rs2=x0 | x15=0x11000 x0=0x0 imm=0x440
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11440, Data=0x0
+  EX result: 0x11440
+  Decoded Instruction: LUI
+  ID pc: 0x1031c
+    rs1=x2 rs2=x0 rd=x15
+    imm=0x11000
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x10320
+    raw_inst: 0x4207a823
+==============================
+Step: 26
+==============================
+  WB: r15 = 0x11000 (from ALU)
+  SW addr: 0x11440
+  EXEC: LUI rd=x15 rs1=x2 rs2=x0 | x2=0x11400 x0=0x0 imm=0x11000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x11000
+  EX result: 0x11000
+  Decoded Instruction: SW
+  ID pc: 0x10320
+    rs1=x15 rs2=x0 rd=x16
+    imm=0x430
+    rs1_val=0x11000 rs2_val=0x0
+  IF pc: 0x10324
+    raw_inst: 0x117b7
+==============================
+Step: 27
+==============================
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: SW rd=x16 rs1=x15 rs2=x0 | x15=0x11000 x0=0x0 imm=0x430
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11430, Data=0x0
+  EX result: 0x11430
+  Decoded Instruction: LUI
+  ID pc: 0x10324
+    rs1=x2 rs2=x0 rd=x15
+    imm=0x11000
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x10328
+    raw_inst: 0x4207aa23
+==============================
+Step: 28
+==============================
+  WB: r15 = 0x11000 (from ALU)
+  SW addr: 0x11430
+  EXEC: LUI rd=x15 rs1=x2 rs2=x0 | x2=0x11400 x0=0x0 imm=0x11000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x11000
+  EX result: 0x11000
+  Decoded Instruction: SW
+  ID pc: 0x10328
+    rs1=x15 rs2=x0 rd=x20
+    imm=0x434
+    rs1_val=0x11000 rs2_val=0x0
+  IF pc: 0x1032c
+    raw_inst: 0x117b7
+==============================
+Step: 29
+==============================
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: SW rd=x20 rs1=x15 rs2=x0 | x15=0x11000 x0=0x0 imm=0x434
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11434, Data=0x0
+  EX result: 0x11434
+  Decoded Instruction: LUI
+  ID pc: 0x1032c
+    rs1=x2 rs2=x0 rd=x15
+    imm=0x11000
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x10330
+    raw_inst: 0x4207ac23
+==============================
+Step: 30
+==============================
+  WB: r15 = 0x11000 (from ALU)
+  SW addr: 0x11434
+  EXEC: LUI rd=x15 rs1=x2 rs2=x0 | x2=0x11400 x0=0x0 imm=0x11000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x11000
+  EX result: 0x11000
+  Decoded Instruction: SW
+  ID pc: 0x10330
+    rs1=x15 rs2=x0 rd=x24
+    imm=0x438
+    rs1_val=0x11000 rs2_val=0x0
+  IF pc: 0x10334
+    raw_inst: 0x13
+==============================
+Step: 31
+==============================
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: SW rd=x24 rs1=x15 rs2=x0 | x15=0x11000 x0=0x0 imm=0x438
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11438, Data=0x0
+  EX result: 0x11438
+  Decoded Instruction: ADDI
+  ID pc: 0x10334
+    rs1=x0 rs2=x0 rd=x0
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10338
+    raw_inst: 0xc12083
+==============================
+Step: 32
+==============================
+  WB: r15 = 0x11000 (from ALU)
+  SW addr: 0x11438
+  EXEC: ADDI rd=x0 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: LW
+  ID pc: 0x10338
+    rs1=x2 rs2=x12 rd=x1
+    imm=0xc
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x1033c
+    raw_inst: 0x812403
+==============================
+Step: 33
+==============================
+  EXEC: LW rd=x1 rs1=x2 rs2=x12 | x2=0x11400 x12=0x0 imm=0xc
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x1033c
+    rs1=x2 rs2=x8 rd=x8
+    imm=0x8
+    rs1_val=0x11400 rs2_val=0x11410
+  IF pc: 0x10340
+    raw_inst: 0x1010113
+==============================
+Step: 34
+==============================
+  LW addr: 0x1140c
+  EXEC: LW rd=x8 rs1=x2 rs2=x8 | x2=0x11400 x8=0x11410 imm=0x8
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x11408
+  EX result: 0x11408
+  Decoded Instruction: ADDI
+  ID pc: 0x10340
+    rs1=x2 rs2=x16 rd=x2
+    imm=0x10
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x10344
+    raw_inst: 0x8067
+==============================
+Step: 35
+==============================
+  WB: r1 = 0x1035c (from MEM)
+  LW addr: 0x11408
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x16 | x2=0x11400 x16=0x0 imm=0x10
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70656
+Input2 source = Immediate
+Selected Input2 value = 16
+ADDI Result: 70672
+  EX result: 0x11410
+  Decoded Instruction: JALR
+  ID pc: 0x10344
+    rs1=x1 rs2=x0 rd=x0
+    rs1_val=0x1035c rs2_val=0x0
+  IF pc: 0x10348
+    raw_inst: 0xff010113
+==============================
+Step: 36
+==============================
+  WB: r8 = 0x11420 (from MEM)
+  EXEC: JALR rd=x0 rs1=x1 rs2=x0 | x1=0x1035c x0=0x0
+  JALR: target=0x1035c link=0x10348
+ FLUSH: branch/jump taken, PC -> 0x1035c
+  IF pc: 0x1035c
+    raw_inst: 0x107b7
+==============================
+Step: 37
+==============================
+  WB: r2 = 0x11410 (from ALU)
+  Decoded Instruction: LUI
+  ID pc: 0x1035c
+    rs1=x2 rs2=x0 rd=x15
+    imm=0x10000
+    rs1_val=0x11410 rs2_val=0x0
+  IF pc: 0x10360
+    raw_inst: 0x78793
+==============================
+Step: 38
+==============================
+  EXEC: LUI rd=x15 rs1=x2 rs2=x0 | x2=0x11410 x0=0x0 imm=0x10000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x10000
+  EX result: 0x10000
+  Decoded Instruction: ADDI
+  ID pc: 0x10360
+    rs1=x15 rs2=x0 rd=x15
+    rs1_val=0x11000 rs2_val=0x0
+  IF pc: 0x10364
+    raw_inst: 0x78513
+==============================
+Step: 39
+==============================
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: ADDI rd=x15 rs1=x15 rs2=x0 | x15=0x10000 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 65536
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 65536
+  EX result: 0x10000
+  Decoded Instruction: ADDI
+  ID pc: 0x10364
+    rs1=x15 rs2=x0 rd=x10
+    rs1_val=0x11000 rs2_val=0x0
+  IF pc: 0x10368
+    raw_inst: 0xf01ff0ef
+==============================
+Step: 40
+==============================
+  WB: r15 = 0x10000 (from ALU)
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: ADDI rd=x10 rs1=x15 rs2=x0 | x15=0x10000 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 65536
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 65536
+  EX result: 0x10000
+  Decoded Instruction: JAL
+  ID pc: 0x10368
+    rs1=x31 rs2=x1 rd=x1
+    imm=0xffffff00
+    rs1_val=0x0 rs2_val=0x1035c
+  IF pc: 0x1036c
+    raw_inst: 0xdf5ff0ef
+==============================
+Step: 41
+==============================
+  WB: r15 = 0x10000 (from ALU)
+  EXEC: JAL rd=x1 rs1=x31 rs2=x1 | x31=0x0 x1=0x1035c imm=0xffffff00
+  JAL: target=0x10268 link=0x1036c
+ FLUSH: branch/jump taken, PC -> 0x10268
+  IF pc: 0x10268
+    raw_inst: 0xfe010113
+==============================
+Step: 42
+==============================
+  WB: r10 = 0x10000 (from ALU)
+  Decoded Instruction: ADDI
+  ID pc: 0x10268
+    rs1=x2 rs2=x0 rd=x2
+    imm=0xffffffe0
+    rs1_val=0x11410 rs2_val=0x0
+  IF pc: 0x1026c
+    raw_inst: 0x112e23
+==============================
+Step: 43
+==============================
+  WB: r1 = 0x1036c (from ALU)
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x0 | x2=0x11410 x0=0x0 imm=0xffffffe0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70672
+Input2 source = Immediate
+Selected Input2 value = 4294967264
+ADDI Result: 70640
+  EX result: 0x113f0
+  Decoded Instruction: SW
+  ID pc: 0x1026c
+    rs1=x2 rs2=x1 rd=x28
+    imm=0x1c
+    rs1_val=0x11410 rs2_val=0x1036c
+  IF pc: 0x10270
+    raw_inst: 0x812c23
+==============================
+Step: 44
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: SW rd=x28 rs1=x2 rs2=x1 | x2=0x113f0 x1=0x1036c imm=0x1c
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1140c, Data=0x1036c
+  EX result: 0x1140c
+  Decoded Instruction: SW
+  ID pc: 0x10270
+    rs1=x2 rs2=x8 rd=x24
+    imm=0x18
+    rs1_val=0x11410 rs2_val=0x11420
+  IF pc: 0x10274
+    raw_inst: 0x2010413
+==============================
+Step: 45
+==============================
+  WB: r2 = 0x113f0 (from ALU)
+  SW addr: 0x1140c
+  EXEC: SW rd=x24 rs1=x2 rs2=x8 | x2=0x113f0 x8=0x11420 imm=0x18
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11408, Data=0x11420
+  EX result: 0x11408
+  Decoded Instruction: ADDI
+  ID pc: 0x10274
+    rs1=x2 rs2=x0 rd=x8
+    imm=0x20
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x10278
+    raw_inst: 0xfea42623
+==============================
+Step: 46
+==============================
+  SW addr: 0x11408
+  EXEC: ADDI rd=x8 rs1=x2 rs2=x0 | x2=0x113f0 x0=0x0 imm=0x20
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70640
+Input2 source = Immediate
+Selected Input2 value = 32
+ADDI Result: 70672
+  EX result: 0x11410
+  Decoded Instruction: SW
+  ID pc: 0x10278
+    rs1=x8 rs2=x10 rd=x12
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x10000
+  IF pc: 0x1027c
+    raw_inst: 0xfec42783
+==============================
+Step: 47
+==============================
+  FWD: x8 <- MEM/WB
+  FWD: x8 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x8 rs2=x10 | x8=0x11410 x10=0x10000 imm=0xffffffec
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113fc, Data=0x10000
+  EX result: 0x113fc
+  Decoded Instruction: LW
+  ID pc: 0x1027c
+    rs1=x8 rs2=x12 rd=x15
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x10280
+    raw_inst: 0x30579073
+==============================
+Step: 48
+==============================
+  WB: r8 = 0x11410 (from ALU)
+  SW addr: 0x113fc
+  EXEC: LW rd=x15 rs1=x8 rs2=x12 | x8=0x11410 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113fc
+  EX result: 0x113fc
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 49
+==============================
+  LW addr: 0x113fc
+  Decoded Instruction: CSRRW
+  ID pc: 0x10280
+    rs1=x15 rs2=x5 rd=x0
+    imm=0x305
+    rs1_val=0x10000 rs2_val=0x0
+  IF pc: 0x10284
+    raw_inst: 0x13
+==============================
+Step: 50
+==============================
+  WB: r15 = 0x10000 (from MEM)
+  EXEC: CSRRW rd=x0 rs1=x15 rs2=x5 | x15=0x10000 x5=0x0 imm=0x305
+execute_inst: id=0xf3 (CSRRW)
+Instruction ID CSRRW 0xf3
+  EX result: 0x0
+  Decoded Instruction: ADDI
+  ID pc: 0x10284
+    rs1=x0 rs2=x0 rd=x0
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10288
+    raw_inst: 0x1c12083
+==============================
+Step: 51
+==============================
+  EXEC: ADDI rd=x0 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: LW
+  ID pc: 0x10288
+    rs1=x2 rs2=x28 rd=x1
+    imm=0x1c
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x1028c
+    raw_inst: 0x1812403
+==============================
+Step: 52
+==============================
+  EXEC: LW rd=x1 rs1=x2 rs2=x28 | x2=0x113f0 x28=0x0 imm=0x1c
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x1028c
+    rs1=x2 rs2=x24 rd=x8
+    imm=0x18
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x10290
+    raw_inst: 0x2010113
+==============================
+Step: 53
+==============================
+  LW addr: 0x1140c
+  EXEC: LW rd=x8 rs1=x2 rs2=x24 | x2=0x113f0 x24=0x0 imm=0x18
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x11408
+  EX result: 0x11408
+  Decoded Instruction: ADDI
+  ID pc: 0x10290
+    rs1=x2 rs2=x0 rd=x2
+    imm=0x20
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x10294
+    raw_inst: 0x8067
+==============================
+Step: 54
+==============================
+  WB: r1 = 0x1036c (from MEM)
+  LW addr: 0x11408
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x0 | x2=0x113f0 x0=0x0 imm=0x20
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70640
+Input2 source = Immediate
+Selected Input2 value = 32
+ADDI Result: 70672
+  EX result: 0x11410
+  Decoded Instruction: JALR
+  ID pc: 0x10294
+    rs1=x1 rs2=x0 rd=x0
+    rs1_val=0x1036c rs2_val=0x0
+  IF pc: 0x10298
+    raw_inst: 0xfe010113
+==============================
+Step: 55
+==============================
+  WB: r8 = 0x11420 (from MEM)
+  EXEC: JALR rd=x0 rs1=x1 rs2=x0 | x1=0x1036c x0=0x0
+  JALR: target=0x1036c link=0x10298
+ FLUSH: branch/jump taken, PC -> 0x1036c
+  IF pc: 0x1036c
+    raw_inst: 0xdf5ff0ef
+==============================
+Step: 56
+==============================
+  WB: r2 = 0x11410 (from ALU)
+  Decoded Instruction: JAL
+  ID pc: 0x1036c
+    rs1=x31 rs2=x21 rd=x1
+    imm=0xfffffdf4
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10370
+    raw_inst: 0xe25ff0ef
+==============================
+Step: 57
+==============================
+  EXEC: JAL rd=x1 rs1=x31 rs2=x21 | x31=0x0 x21=0x0 imm=0xfffffdf4
+  JAL: target=0x10160 link=0x10370
+ FLUSH: branch/jump taken, PC -> 0x10160
+  IF pc: 0x10160
+    raw_inst: 0xff010113
+==============================
+Step: 58
+==============================
+  Decoded Instruction: ADDI
+  ID pc: 0x10160
+    rs1=x2 rs2=x16 rd=x2
+    imm=0xfffffff0
+    rs1_val=0x11410 rs2_val=0x0
+  IF pc: 0x10164
+    raw_inst: 0x112623
+==============================
+Step: 59
+==============================
+  WB: r1 = 0x10370 (from ALU)
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x16 | x2=0x11410 x16=0x0 imm=0xfffffff0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70672
+Input2 source = Immediate
+Selected Input2 value = 4294967280
+ADDI Result: 70656
+  EX result: 0x11400
+  Decoded Instruction: SW
+  ID pc: 0x10164
+    rs1=x2 rs2=x1 rd=x12
+    imm=0xc
+    rs1_val=0x11410 rs2_val=0x10370
+  IF pc: 0x10168
+    raw_inst: 0x812423
+==============================
+Step: 60
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x2 rs2=x1 | x2=0x11400 x1=0x10370 imm=0xc
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1140c, Data=0x10370
+  EX result: 0x1140c
+  Decoded Instruction: SW
+  ID pc: 0x10168
+    rs1=x2 rs2=x8 rd=x8
+    imm=0x8
+    rs1_val=0x11410 rs2_val=0x11420
+  IF pc: 0x1016c
+    raw_inst: 0x1010413
+==============================
+Step: 61
+==============================
+  WB: r2 = 0x11400 (from ALU)
+  SW addr: 0x1140c
+  EXEC: SW rd=x8 rs1=x2 rs2=x8 | x2=0x11400 x8=0x11420 imm=0x8
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11408, Data=0x11420
+  EX result: 0x11408
+  Decoded Instruction: ADDI
+  ID pc: 0x1016c
+    rs1=x2 rs2=x16 rd=x8
+    imm=0x10
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x10170
+    raw_inst: 0x100007b7
+==============================
+Step: 62
+==============================
+  SW addr: 0x11408
+  EXEC: ADDI rd=x8 rs1=x2 rs2=x16 | x2=0x11400 x16=0x0 imm=0x10
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70656
+Input2 source = Immediate
+Selected Input2 value = 16
+ADDI Result: 70672
+  EX result: 0x11410
+  Decoded Instruction: LUI
+  ID pc: 0x10170
+    rs1=x0 rs2=x0 rd=x15
+    imm=0x10000000
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10174
+    raw_inst: 0x878793
+==============================
+Step: 63
+==============================
+  EXEC: LUI rd=x15 rs1=x0 rs2=x0 | x0=0x0 x0=0x0 imm=0x10000000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x10000000
+  EX result: 0x10000000
+  Decoded Instruction: ADDI
+  ID pc: 0x10174
+    rs1=x15 rs2=x8 rd=x15
+    imm=0x8
+    rs1_val=0x10000 rs2_val=0x11420
+  IF pc: 0x10178
+    raw_inst: 0x100713
+==============================
+Step: 64
+==============================
+  WB: r8 = 0x11410 (from ALU)
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: ADDI rd=x15 rs1=x15 rs2=x8 | x15=0x10000000 x8=0x11410 imm=0x8
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 268435456
+Input2 source = Immediate
+Selected Input2 value = 8
+ADDI Result: 268435464
+  EX result: 0x10000008
+  Decoded Instruction: ADDI
+  ID pc: 0x10178
+    rs1=x0 rs2=x1 rd=x14
+    imm=0x1
+    rs1_val=0x0 rs2_val=0x10370
+  IF pc: 0x1017c
+    raw_inst: 0xe7a023
+==============================
+Step: 65
+==============================
+  WB: r15 = 0x10000000 (from ALU)
+  EXEC: ADDI rd=x14 rs1=x0 rs2=x1 | x0=0x0 x1=0x10370 imm=0x1
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 1
+ADDI Result: 1
+  EX result: 0x1
+  Decoded Instruction: SW
+  ID pc: 0x1017c
+    rs1=x15 rs2=x14 rd=x0
+    rs1_val=0x10000000 rs2_val=0x0
+  IF pc: 0x10180
+    raw_inst: 0x13
+==============================
+Step: 66
+==============================
+  WB: r15 = 0x10000008 (from ALU)
+  FWD: x14 <- MEM/WB
+  FWD: x14 <- EX/MEM
+  EXEC: SW rd=x0 rs1=x15 rs2=x14 | x15=0x10000008 x14=0x1
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x10000008, Data=0x1
+  EX result: 0x10000008
+  Decoded Instruction: ADDI
+  ID pc: 0x10180
+    rs1=x0 rs2=x0 rd=x0
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10184
+    raw_inst: 0xc12083
+==============================
+Step: 67
+==============================
+  WB: r14 = 0x1 (from ALU)
+  SW addr: 0x10000008
+  EXEC: ADDI rd=x0 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: LW
+  ID pc: 0x10184
+    rs1=x2 rs2=x12 rd=x1
+    imm=0xc
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x10188
+    raw_inst: 0x812403
+==============================
+Step: 68
+==============================
+  EXEC: LW rd=x1 rs1=x2 rs2=x12 | x2=0x11400 x12=0x0 imm=0xc
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x10188
+    rs1=x2 rs2=x8 rd=x8
+    imm=0x8
+    rs1_val=0x11400 rs2_val=0x11410
+  IF pc: 0x1018c
+    raw_inst: 0x1010113
+==============================
+Step: 69
+==============================
+  LW addr: 0x1140c
+  EXEC: LW rd=x8 rs1=x2 rs2=x8 | x2=0x11400 x8=0x11410 imm=0x8
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x11408
+  EX result: 0x11408
+  Decoded Instruction: ADDI
+  ID pc: 0x1018c
+    rs1=x2 rs2=x16 rd=x2
+    imm=0x10
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x10190
+    raw_inst: 0x8067
+==============================
+Step: 70
+==============================
+  WB: r1 = 0x10370 (from MEM)
+  LW addr: 0x11408
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x16 | x2=0x11400 x16=0x0 imm=0x10
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70656
+Input2 source = Immediate
+Selected Input2 value = 16
+ADDI Result: 70672
+  EX result: 0x11410
+  Decoded Instruction: JALR
+  ID pc: 0x10190
+    rs1=x1 rs2=x0 rd=x0
+    rs1_val=0x10370 rs2_val=0x0
+  IF pc: 0x10194
+    raw_inst: 0xff010113
+==============================
+Step: 71
+==============================
+  WB: r8 = 0x11420 (from MEM)
+  EXEC: JALR rd=x0 rs1=x1 rs2=x0 | x1=0x10370 x0=0x0
+  JALR: target=0x10370 link=0x10194
+ FLUSH: branch/jump taken, PC -> 0x10370
+  IF pc: 0x10370
+    raw_inst: 0xe25ff0ef
+==============================
+Step: 72
+==============================
+  WB: r2 = 0x11410 (from ALU)
+  Decoded Instruction: JAL
+  ID pc: 0x10370
+    rs1=x31 rs2=x5 rd=x1
+    imm=0xfffffe24
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10374
+    raw_inst: 0x100007b7
+==============================
+Step: 73
+==============================
+  EXEC: JAL rd=x1 rs1=x31 rs2=x5 | x31=0x0 x5=0x0 imm=0xfffffe24
+  JAL: target=0x10194 link=0x10374
+ FLUSH: branch/jump taken, PC -> 0x10194
+  IF pc: 0x10194
+    raw_inst: 0xff010113
+==============================
+Step: 74
+==============================
+  Decoded Instruction: ADDI
+  ID pc: 0x10194
+    rs1=x2 rs2=x16 rd=x2
+    imm=0xfffffff0
+    rs1_val=0x11410 rs2_val=0x0
+  IF pc: 0x10198
+    raw_inst: 0x112623
+==============================
+Step: 75
+==============================
+  WB: r1 = 0x10374 (from ALU)
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x16 | x2=0x11410 x16=0x0 imm=0xfffffff0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70672
+Input2 source = Immediate
+Selected Input2 value = 4294967280
+ADDI Result: 70656
+  EX result: 0x11400
+  Decoded Instruction: SW
+  ID pc: 0x10198
+    rs1=x2 rs2=x1 rd=x12
+    imm=0xc
+    rs1_val=0x11410 rs2_val=0x10374
+  IF pc: 0x1019c
+    raw_inst: 0x812423
+==============================
+Step: 76
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x2 rs2=x1 | x2=0x11400 x1=0x10374 imm=0xc
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1140c, Data=0x10374
+  EX result: 0x1140c
+  Decoded Instruction: SW
+  ID pc: 0x1019c
+    rs1=x2 rs2=x8 rd=x8
+    imm=0x8
+    rs1_val=0x11410 rs2_val=0x11420
+  IF pc: 0x101a0
+    raw_inst: 0x1010413
+==============================
+Step: 77
+==============================
+  WB: r2 = 0x11400 (from ALU)
+  SW addr: 0x1140c
+  EXEC: SW rd=x8 rs1=x2 rs2=x8 | x2=0x11400 x8=0x11420 imm=0x8
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11408, Data=0x11420
+  EX result: 0x11408
+  Decoded Instruction: ADDI
+  ID pc: 0x101a0
+    rs1=x2 rs2=x16 rd=x8
+    imm=0x10
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x101a4
+    raw_inst: 0x100007b7
+==============================
+Step: 78
+==============================
+  SW addr: 0x11408
+  EXEC: ADDI rd=x8 rs1=x2 rs2=x16 | x2=0x11400 x16=0x0 imm=0x10
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70656
+Input2 source = Immediate
+Selected Input2 value = 16
+ADDI Result: 70672
+  EX result: 0x11410
+  Decoded Instruction: LUI
+  ID pc: 0x101a4
+    rs1=x0 rs2=x0 rd=x15
+    imm=0x10000000
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x101a8
+    raw_inst: 0xc78793
+==============================
+Step: 79
+==============================
+  EXEC: LUI rd=x15 rs1=x0 rs2=x0 | x0=0x0 x0=0x0 imm=0x10000000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x10000000
+  EX result: 0x10000000
+  Decoded Instruction: ADDI
+  ID pc: 0x101a8
+    rs1=x15 rs2=x12 rd=x15
+    imm=0xc
+    rs1_val=0x10000008 rs2_val=0x0
+  IF pc: 0x101ac
+    raw_inst: 0x100713
+==============================
+Step: 80
+==============================
+  WB: r8 = 0x11410 (from ALU)
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: ADDI rd=x15 rs1=x15 rs2=x12 | x15=0x10000000 x12=0x0 imm=0xc
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 268435456
+Input2 source = Immediate
+Selected Input2 value = 12
+ADDI Result: 268435468
+  EX result: 0x1000000c
+  Decoded Instruction: ADDI
+  ID pc: 0x101ac
+    rs1=x0 rs2=x1 rd=x14
+    imm=0x1
+    rs1_val=0x0 rs2_val=0x10374
+  IF pc: 0x101b0
+    raw_inst: 0xe7a023
+==============================
+Step: 81
+==============================
+  WB: r15 = 0x10000000 (from ALU)
+  EXEC: ADDI rd=x14 rs1=x0 rs2=x1 | x0=0x0 x1=0x10374 imm=0x1
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 1
+ADDI Result: 1
+  EX result: 0x1
+  Decoded Instruction: SW
+  ID pc: 0x101b0
+    rs1=x15 rs2=x14 rd=x0
+    rs1_val=0x10000000 rs2_val=0x1
+  IF pc: 0x101b4
+    raw_inst: 0x13
+==============================
+Step: 82
+==============================
+  WB: r15 = 0x1000000c (from ALU)
+  FWD: x14 <- MEM/WB
+  FWD: x14 <- EX/MEM
+  EXEC: SW rd=x0 rs1=x15 rs2=x14 | x15=0x1000000c x14=0x1
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1000000c, Data=0x1
+  EX result: 0x1000000c
+  Decoded Instruction: ADDI
+  ID pc: 0x101b4
+    rs1=x0 rs2=x0 rd=x0
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x101b8
+    raw_inst: 0xc12083
+==============================
+Step: 83
+==============================
+  WB: r14 = 0x1 (from ALU)
+  SW addr: 0x1000000c
+  EXEC: ADDI rd=x0 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: LW
+  ID pc: 0x101b8
+    rs1=x2 rs2=x12 rd=x1
+    imm=0xc
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x101bc
+    raw_inst: 0x812403
+==============================
+Step: 84
+==============================
+  EXEC: LW rd=x1 rs1=x2 rs2=x12 | x2=0x11400 x12=0x0 imm=0xc
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x101bc
+    rs1=x2 rs2=x8 rd=x8
+    imm=0x8
+    rs1_val=0x11400 rs2_val=0x11410
+  IF pc: 0x101c0
+    raw_inst: 0x1010113
+==============================
+Step: 85
+==============================
+  LW addr: 0x1140c
+  EXEC: LW rd=x8 rs1=x2 rs2=x8 | x2=0x11400 x8=0x11410 imm=0x8
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x11408
+  EX result: 0x11408
+  Decoded Instruction: ADDI
+  ID pc: 0x101c0
+    rs1=x2 rs2=x16 rd=x2
+    imm=0x10
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x101c4
+    raw_inst: 0x8067
+==============================
+Step: 86
+==============================
+  WB: r1 = 0x10374 (from MEM)
+  LW addr: 0x11408
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x16 | x2=0x11400 x16=0x0 imm=0x10
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70656
+Input2 source = Immediate
+Selected Input2 value = 16
+ADDI Result: 70672
+  EX result: 0x11410
+  Decoded Instruction: JALR
+  ID pc: 0x101c4
+    rs1=x1 rs2=x0 rd=x0
+    rs1_val=0x10374 rs2_val=0x0
+  IF pc: 0x101c8
+    raw_inst: 0xfe010113
+==============================
+Step: 87
+==============================
+  WB: r8 = 0x11420 (from MEM)
+  EXEC: JALR rd=x0 rs1=x1 rs2=x0 | x1=0x10374 x0=0x0
+  JALR: target=0x10374 link=0x101c8
+ FLUSH: branch/jump taken, PC -> 0x10374
+  IF pc: 0x10374
+    raw_inst: 0x100007b7
+==============================
+Step: 88
+==============================
+  WB: r2 = 0x11410 (from ALU)
+  Decoded Instruction: LUI
+  ID pc: 0x10374
+    rs1=x0 rs2=x0 rd=x15
+    imm=0x10000000
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10378
+    raw_inst: 0x1078793
+==============================
+Step: 89
+==============================
+  EXEC: LUI rd=x15 rs1=x0 rs2=x0 | x0=0x0 x0=0x0 imm=0x10000000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x10000000
+  EX result: 0x10000000
+  Decoded Instruction: ADDI
+  ID pc: 0x10378
+    rs1=x15 rs2=x16 rd=x15
+    imm=0x10
+    rs1_val=0x1000000c rs2_val=0x0
+  IF pc: 0x1037c
+    raw_inst: 0x200713
+==============================
+Step: 90
+==============================
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: ADDI rd=x15 rs1=x15 rs2=x16 | x15=0x10000000 x16=0x0 imm=0x10
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 268435456
+Input2 source = Immediate
+Selected Input2 value = 16
+ADDI Result: 268435472
+  EX result: 0x10000010
+  Decoded Instruction: ADDI
+  ID pc: 0x1037c
+    rs1=x0 rs2=x2 rd=x14
+    imm=0x2
+    rs1_val=0x0 rs2_val=0x11410
+  IF pc: 0x10380
+    raw_inst: 0xe7a023
+==============================
+Step: 91
+==============================
+  WB: r15 = 0x10000000 (from ALU)
+  EXEC: ADDI rd=x14 rs1=x0 rs2=x2 | x0=0x0 x2=0x11410 imm=0x2
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 2
+ADDI Result: 2
+  EX result: 0x2
+  Decoded Instruction: SW
+  ID pc: 0x10380
+    rs1=x15 rs2=x14 rd=x0
+    rs1_val=0x10000000 rs2_val=0x1
+  IF pc: 0x10384
+    raw_inst: 0x17b7
+==============================
+Step: 92
+==============================
+  WB: r15 = 0x10000010 (from ALU)
+  FWD: x14 <- MEM/WB
+  FWD: x14 <- EX/MEM
+  EXEC: SW rd=x0 rs1=x15 rs2=x14 | x15=0x10000010 x14=0x2
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x10000010, Data=0x2
+  EX result: 0x10000010
+  Decoded Instruction: LUI
+  ID pc: 0x10384
+    rs1=x0 rs2=x0 rd=x15
+    imm=0x1000
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10388
+    raw_inst: 0x80078513
+==============================
+Step: 93
+==============================
+  WB: r14 = 0x2 (from ALU)
+  SW addr: 0x10000010
+  EXEC: LUI rd=x15 rs1=x0 rs2=x0 | x0=0x0 x0=0x0 imm=0x1000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x1000
+  EX result: 0x1000
+  Decoded Instruction: ADDI
+  ID pc: 0x10388
+    rs1=x15 rs2=x0 rd=x10
+    imm=0xfffff800
+    rs1_val=0x10000010 rs2_val=0x0
+  IF pc: 0x1038c
+    raw_inst: 0xf0dff0ef
+==============================
+Step: 94
+==============================
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: ADDI rd=x10 rs1=x15 rs2=x0 | x15=0x1000 x0=0x0 imm=0xfffff800
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 4096
+Input2 source = Immediate
+Selected Input2 value = 4294965248
+ADDI Result: 2048
+  EX result: 0x800
+  Decoded Instruction: JAL
+  ID pc: 0x1038c
+    rs1=x31 rs2=x13 rd=x1
+    imm=0xffffff0c
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10390
+    raw_inst: 0xf39ff0ef
+==============================
+Step: 95
+==============================
+  WB: r15 = 0x1000 (from ALU)
+  EXEC: JAL rd=x1 rs1=x31 rs2=x13 | x31=0x0 x13=0x0 imm=0xffffff0c
+  JAL: target=0x10298 link=0x10390
+ FLUSH: branch/jump taken, PC -> 0x10298
+  IF pc: 0x10298
+    raw_inst: 0xfe010113
+==============================
+Step: 96
+==============================
+  WB: r10 = 0x800 (from ALU)
+  Decoded Instruction: ADDI
+  ID pc: 0x10298
+    rs1=x2 rs2=x0 rd=x2
+    imm=0xffffffe0
+    rs1_val=0x11410 rs2_val=0x0
+  IF pc: 0x1029c
+    raw_inst: 0x112e23
+==============================
+Step: 97
+==============================
+  WB: r1 = 0x10390 (from ALU)
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x0 | x2=0x11410 x0=0x0 imm=0xffffffe0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70672
+Input2 source = Immediate
+Selected Input2 value = 4294967264
+ADDI Result: 70640
+  EX result: 0x113f0
+  Decoded Instruction: SW
+  ID pc: 0x1029c
+    rs1=x2 rs2=x1 rd=x28
+    imm=0x1c
+    rs1_val=0x11410 rs2_val=0x10390
+  IF pc: 0x102a0
+    raw_inst: 0x812c23
+==============================
+Step: 98
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: SW rd=x28 rs1=x2 rs2=x1 | x2=0x113f0 x1=0x10390 imm=0x1c
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1140c, Data=0x10390
+  EX result: 0x1140c
+  Decoded Instruction: SW
+  ID pc: 0x102a0
+    rs1=x2 rs2=x8 rd=x24
+    imm=0x18
+    rs1_val=0x11410 rs2_val=0x11420
+  IF pc: 0x102a4
+    raw_inst: 0x2010413
+==============================
+Step: 99
+==============================
+  WB: r2 = 0x113f0 (from ALU)
+  SW addr: 0x1140c
+  EXEC: SW rd=x24 rs1=x2 rs2=x8 | x2=0x113f0 x8=0x11420 imm=0x18
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11408, Data=0x11420
+  EX result: 0x11408
+  Decoded Instruction: ADDI
+  ID pc: 0x102a4
+    rs1=x2 rs2=x0 rd=x8
+    imm=0x20
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x102a8
+    raw_inst: 0xfea42623
+==============================
+Step: 100
+==============================
+  SW addr: 0x11408
+  EXEC: ADDI rd=x8 rs1=x2 rs2=x0 | x2=0x113f0 x0=0x0 imm=0x20
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70640
+Input2 source = Immediate
+Selected Input2 value = 32
+ADDI Result: 70672
+  EX result: 0x11410
+  Decoded Instruction: SW
+  ID pc: 0x102a8
+    rs1=x8 rs2=x10 rd=x12
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x800
+  IF pc: 0x102ac
+    raw_inst: 0xfec42783
+==============================
+Step: 101
+==============================
+  FWD: x8 <- MEM/WB
+  FWD: x8 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x8 rs2=x10 | x8=0x11410 x10=0x800 imm=0xffffffec
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113fc, Data=0x800
+  EX result: 0x113fc
+  Decoded Instruction: LW
+  ID pc: 0x102ac
+    rs1=x8 rs2=x12 rd=x15
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x102b0
+    raw_inst: 0x30479073
+==============================
+Step: 102
+==============================
+  WB: r8 = 0x11410 (from ALU)
+  SW addr: 0x113fc
+  EXEC: LW rd=x15 rs1=x8 rs2=x12 | x8=0x11410 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113fc
+  EX result: 0x113fc
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 103
+==============================
+  LW addr: 0x113fc
+  Decoded Instruction: CSRRW
+  ID pc: 0x102b0
+    rs1=x15 rs2=x4 rd=x0
+    imm=0x304
+    rs1_val=0x1000 rs2_val=0x0
+  IF pc: 0x102b4
+    raw_inst: 0x13
+==============================
+Step: 104
+==============================
+  WB: r15 = 0x800 (from MEM)
+  EXEC: CSRRW rd=x0 rs1=x15 rs2=x4 | x15=0x800 x4=0x0 imm=0x304
+execute_inst: id=0xf3 (CSRRW)
+Instruction ID CSRRW 0xf3
+  EX result: 0x0
+  Decoded Instruction: ADDI
+  ID pc: 0x102b4
+    rs1=x0 rs2=x0 rd=x0
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x102b8
+    raw_inst: 0x1c12083
+==============================
+Step: 105
+==============================
+  EXEC: ADDI rd=x0 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: LW
+  ID pc: 0x102b8
+    rs1=x2 rs2=x28 rd=x1
+    imm=0x1c
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x102bc
+    raw_inst: 0x1812403
+==============================
+Step: 106
+==============================
+  EXEC: LW rd=x1 rs1=x2 rs2=x28 | x2=0x113f0 x28=0x0 imm=0x1c
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x102bc
+    rs1=x2 rs2=x24 rd=x8
+    imm=0x18
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x102c0
+    raw_inst: 0x2010113
+==============================
+Step: 107
+==============================
+  LW addr: 0x1140c
+  EXEC: LW rd=x8 rs1=x2 rs2=x24 | x2=0x113f0 x24=0x0 imm=0x18
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x11408
+  EX result: 0x11408
+  Decoded Instruction: ADDI
+  ID pc: 0x102c0
+    rs1=x2 rs2=x0 rd=x2
+    imm=0x20
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x102c4
+    raw_inst: 0x8067
+==============================
+Step: 108
+==============================
+  WB: r1 = 0x10390 (from MEM)
+  LW addr: 0x11408
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x0 | x2=0x113f0 x0=0x0 imm=0x20
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70640
+Input2 source = Immediate
+Selected Input2 value = 32
+ADDI Result: 70672
+  EX result: 0x11410
+  Decoded Instruction: JALR
+  ID pc: 0x102c4
+    rs1=x1 rs2=x0 rd=x0
+    rs1_val=0x10390 rs2_val=0x0
+  IF pc: 0x102c8
+    raw_inst: 0xfe010113
+==============================
+Step: 109
+==============================
+  WB: r8 = 0x11420 (from MEM)
+  EXEC: JALR rd=x0 rs1=x1 rs2=x0 | x1=0x10390 x0=0x0
+  JALR: target=0x10390 link=0x102c8
+ FLUSH: branch/jump taken, PC -> 0x10390
+  IF pc: 0x10390
+    raw_inst: 0xf39ff0ef
+==============================
+Step: 110
+==============================
+  WB: r2 = 0x11410 (from ALU)
+  Decoded Instruction: JAL
+  ID pc: 0x10390
+    rs1=x31 rs2=x25 rd=x1
+    imm=0xffffff38
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10394
+    raw_inst: 0x13
+==============================
+Step: 111
+==============================
+  EXEC: JAL rd=x1 rs1=x31 rs2=x25 | x31=0x0 x25=0x0 imm=0xffffff38
+  JAL: target=0x102c8 link=0x10394
+ FLUSH: branch/jump taken, PC -> 0x102c8
+  IF pc: 0x102c8
+    raw_inst: 0xfe010113
+==============================
+Step: 112
+==============================
+  Decoded Instruction: ADDI
+  ID pc: 0x102c8
+    rs1=x2 rs2=x0 rd=x2
+    imm=0xffffffe0
+    rs1_val=0x11410 rs2_val=0x0
+  IF pc: 0x102cc
+    raw_inst: 0x112e23
+==============================
+Step: 113
+==============================
+  WB: r1 = 0x10394 (from ALU)
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x0 | x2=0x11410 x0=0x0 imm=0xffffffe0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70672
+Input2 source = Immediate
+Selected Input2 value = 4294967264
+ADDI Result: 70640
+  EX result: 0x113f0
+  Decoded Instruction: SW
+  ID pc: 0x102cc
+    rs1=x2 rs2=x1 rd=x28
+    imm=0x1c
+    rs1_val=0x11410 rs2_val=0x10394
+  IF pc: 0x102d0
+    raw_inst: 0x812c23
+==============================
+Step: 114
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: SW rd=x28 rs1=x2 rs2=x1 | x2=0x113f0 x1=0x10394 imm=0x1c
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1140c, Data=0x10394
+  EX result: 0x1140c
+  Decoded Instruction: SW
+  ID pc: 0x102d0
+    rs1=x2 rs2=x8 rd=x24
+    imm=0x18
+    rs1_val=0x11410 rs2_val=0x11420
+  IF pc: 0x102d4
+    raw_inst: 0x2010413
+==============================
+Step: 115
+==============================
+  WB: r2 = 0x113f0 (from ALU)
+  SW addr: 0x1140c
+  EXEC: SW rd=x24 rs1=x2 rs2=x8 | x2=0x113f0 x8=0x11420 imm=0x18
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11408, Data=0x11420
+  EX result: 0x11408
+  Decoded Instruction: ADDI
+  ID pc: 0x102d4
+    rs1=x2 rs2=x0 rd=x8
+    imm=0x20
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x102d8
+    raw_inst: 0x800793
+==============================
+Step: 116
+==============================
+  SW addr: 0x11408
+  EXEC: ADDI rd=x8 rs1=x2 rs2=x0 | x2=0x113f0 x0=0x0 imm=0x20
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70640
+Input2 source = Immediate
+Selected Input2 value = 32
+ADDI Result: 70672
+  EX result: 0x11410
+  Decoded Instruction: ADDI
+  ID pc: 0x102d8
+    rs1=x0 rs2=x8 rd=x15
+    imm=0x8
+    rs1_val=0x0 rs2_val=0x11420
+  IF pc: 0x102dc
+    raw_inst: 0xfef42623
+==============================
+Step: 117
+==============================
+  FWD: x8 <- MEM/WB
+  FWD: x8 <- EX/MEM
+  EXEC: ADDI rd=x15 rs1=x0 rs2=x8 | x0=0x0 x8=0x11410 imm=0x8
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 8
+ADDI Result: 8
+  EX result: 0x8
+  Decoded Instruction: SW
+  ID pc: 0x102dc
+    rs1=x8 rs2=x15 rd=x12
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x800
+  IF pc: 0x102e0
+    raw_inst: 0xfec42783
+==============================
+Step: 118
+==============================
+  WB: r8 = 0x11410 (from ALU)
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x8 rs2=x15 | x8=0x11410 x15=0x8 imm=0xffffffec
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113fc, Data=0x8
+  EX result: 0x113fc
+  Decoded Instruction: LW
+  ID pc: 0x102e0
+    rs1=x8 rs2=x12 rd=x15
+    imm=0xffffffec
+    rs1_val=0x11410 rs2_val=0x0
+  IF pc: 0x102e4
+    raw_inst: 0x3007a073
+==============================
+Step: 119
+==============================
+  WB: r15 = 0x8 (from ALU)
+  SW addr: 0x113fc
+  EXEC: LW rd=x15 rs1=x8 rs2=x12 | x8=0x11410 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113fc
+  EX result: 0x113fc
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 120
+==============================
+  LW addr: 0x113fc
+  Decoded Instruction: CSRRS
+  ID pc: 0x102e4
+    rs1=x15 rs2=x0 rd=x0
+    imm=0x300
+    rs1_val=0x8 rs2_val=0x0
+  IF pc: 0x102e8
+    raw_inst: 0x13
+==============================
+Step: 121
+==============================
+  WB: r15 = 0x8 (from MEM)
+  EXEC: CSRRS rd=x0 rs1=x15 rs2=x0 | x15=0x8 x0=0x0 imm=0x300
+execute_inst: id=0x173 (CSRRS)
+Instruction ID CSRRS 0x173
+  EX result: 0x0
+  Decoded Instruction: ADDI
+  ID pc: 0x102e8
+    rs1=x0 rs2=x0 rd=x0
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x102ec
+    raw_inst: 0x1c12083
+==============================
+Step: 122
+==============================
+  EXEC: ADDI rd=x0 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: LW
+  ID pc: 0x102ec
+    rs1=x2 rs2=x28 rd=x1
+    imm=0x1c
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x102f0
+    raw_inst: 0x1812403
+==============================
+Step: 123
+==============================
+  EXEC: LW rd=x1 rs1=x2 rs2=x28 | x2=0x113f0 x28=0x0 imm=0x1c
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x102f0
+    rs1=x2 rs2=x24 rd=x8
+    imm=0x18
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x102f4
+    raw_inst: 0x2010113
+==============================
+Step: 124
+==============================
+  LW addr: 0x1140c
+  EXEC: LW rd=x8 rs1=x2 rs2=x24 | x2=0x113f0 x24=0x0 imm=0x18
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x11408
+  EX result: 0x11408
+  Decoded Instruction: ADDI
+  ID pc: 0x102f4
+    rs1=x2 rs2=x0 rd=x2
+    imm=0x20
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x102f8
+    raw_inst: 0x8067
+==============================
+Step: 125
+==============================
+  WB: r1 = 0x10394 (from MEM)
+  LW addr: 0x11408
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x0 | x2=0x113f0 x0=0x0 imm=0x20
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70640
+Input2 source = Immediate
+Selected Input2 value = 32
+ADDI Result: 70672
+  EX result: 0x11410
+  Decoded Instruction: JALR
+  ID pc: 0x102f8
+    rs1=x1 rs2=x0 rd=x0
+    rs1_val=0x10394 rs2_val=0x0
+  IF pc: 0x102fc
+    raw_inst: 0xff010113
+==============================
+Step: 126
+==============================
+  WB: r8 = 0x11420 (from MEM)
+  EXEC: JALR rd=x0 rs1=x1 rs2=x0 | x1=0x10394 x0=0x0
+  JALR: target=0x10394 link=0x102fc
+ FLUSH: branch/jump taken, PC -> 0x10394
+  IF pc: 0x10394
+    raw_inst: 0x13
+==============================
+Step: 127
+==============================
+  WB: r2 = 0x11410 (from ALU)
+  Decoded Instruction: ADDI
+  ID pc: 0x10394
+    rs1=x0 rs2=x0 rd=x0
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10398
+    raw_inst: 0xc12083
+==============================
+Step: 128
+==============================
+  EXEC: ADDI rd=x0 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: LW
+  ID pc: 0x10398
+    rs1=x2 rs2=x12 rd=x1
+    imm=0xc
+    rs1_val=0x11410 rs2_val=0x0
+  IF pc: 0x1039c
+    raw_inst: 0x812403
+==============================
+Step: 129
+==============================
+  EXEC: LW rd=x1 rs1=x2 rs2=x12 | x2=0x11410 x12=0x0 imm=0xc
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1141c
+  EX result: 0x1141c
+  Decoded Instruction: LW
+  ID pc: 0x1039c
+    rs1=x2 rs2=x8 rd=x8
+    imm=0x8
+    rs1_val=0x11410 rs2_val=0x11420
+  IF pc: 0x103a0
+    raw_inst: 0x1010113
+==============================
+Step: 130
+==============================
+  LW addr: 0x1141c
+  EXEC: LW rd=x8 rs1=x2 rs2=x8 | x2=0x11410 x8=0x11420 imm=0x8
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x11418
+  EX result: 0x11418
+  Decoded Instruction: ADDI
+  ID pc: 0x103a0
+    rs1=x2 rs2=x16 rd=x2
+    imm=0x10
+    rs1_val=0x11410 rs2_val=0x0
+  IF pc: 0x103a4
+    raw_inst: 0x8067
+==============================
+Step: 131
+==============================
+  WB: r1 = 0x103e8 (from MEM)
+  LW addr: 0x11418
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x16 | x2=0x11410 x16=0x0 imm=0x10
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70672
+Input2 source = Immediate
+Selected Input2 value = 16
+ADDI Result: 70688
+  EX result: 0x11420
+  Decoded Instruction: JALR
+  ID pc: 0x103a4
+    rs1=x1 rs2=x0 rd=x0
+    rs1_val=0x103e8 rs2_val=0x0
+  IF pc: 0x103a8
+    raw_inst: 0xfe010113
+==============================
+Step: 132
+==============================
+  WB: r8 = 0x11430 (from MEM)
+  EXEC: JALR rd=x0 rs1=x1 rs2=x0 | x1=0x103e8 x0=0x0
+  JALR: target=0x103e8 link=0x103a8
+ FLUSH: branch/jump taken, PC -> 0x103e8
+  IF pc: 0x103e8
+    raw_inst: 0x300593
+==============================
+Step: 133
+==============================
+  WB: r2 = 0x11420 (from ALU)
+  Decoded Instruction: ADDI
+  ID pc: 0x103e8
+    rs1=x0 rs2=x3 rd=x11
+    imm=0x3
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x103ec
+    raw_inst: 0x107b7
+==============================
+Step: 134
+==============================
+  EXEC: ADDI rd=x11 rs1=x0 rs2=x3 | x0=0x0 x3=0x0 imm=0x3
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 3
+ADDI Result: 3
+  EX result: 0x3
+  Decoded Instruction: LUI
+  ID pc: 0x103ec
+    rs1=x2 rs2=x0 rd=x15
+    imm=0x10000
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x103f0
+    raw_inst: 0x42478513
+==============================
+Step: 135
+==============================
+  EXEC: LUI rd=x15 rs1=x2 rs2=x0 | x2=0x11420 x0=0x0 imm=0x10000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x10000
+  EX result: 0x10000
+  Decoded Instruction: ADDI
+  ID pc: 0x103f0
+    rs1=x15 rs2=x4 rd=x10
+    imm=0x424
+    rs1_val=0x8 rs2_val=0x0
+  IF pc: 0x103f4
+    raw_inst: 0xe0dff0ef
+==============================
+Step: 136
+==============================
+  WB: r11 = 0x3 (from ALU)
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: ADDI rd=x10 rs1=x15 rs2=x4 | x15=0x10000 x4=0x0 imm=0x424
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 65536
+Input2 source = Immediate
+Selected Input2 value = 1060
+ADDI Result: 66596
+  EX result: 0x10424
+  Decoded Instruction: JAL
+  ID pc: 0x103f4
+    rs1=x31 rs2=x13 rd=x1
+    imm=0xfffffe0c
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x103f8
+    raw_inst: 0x100007b7
+==============================
+Step: 137
+==============================
+  WB: r15 = 0x10000 (from ALU)
+  EXEC: JAL rd=x1 rs1=x31 rs2=x13 | x31=0x0 x13=0x0 imm=0xfffffe0c
+  JAL: target=0x10200 link=0x103f8
+ FLUSH: branch/jump taken, PC -> 0x10200
+  IF pc: 0x10200
+    raw_inst: 0xfd010113
+==============================
+Step: 138
+==============================
+  WB: r10 = 0x10424 (from ALU)
+  Decoded Instruction: ADDI
+  ID pc: 0x10200
+    rs1=x2 rs2=x16 rd=x2
+    imm=0xffffffd0
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x10204
+    raw_inst: 0x2112623
+==============================
+Step: 139
+==============================
+  WB: r1 = 0x103f8 (from ALU)
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x16 | x2=0x11420 x16=0x0 imm=0xffffffd0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70688
+Input2 source = Immediate
+Selected Input2 value = 4294967248
+ADDI Result: 70640
+  EX result: 0x113f0
+  Decoded Instruction: SW
+  ID pc: 0x10204
+    rs1=x2 rs2=x1 rd=x12
+    imm=0x2c
+    rs1_val=0x11420 rs2_val=0x103f8
+  IF pc: 0x10208
+    raw_inst: 0x2812423
+==============================
+Step: 140
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x2 rs2=x1 | x2=0x113f0 x1=0x103f8 imm=0x2c
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1141c, Data=0x103f8
+  EX result: 0x1141c
+  Decoded Instruction: SW
+  ID pc: 0x10208
+    rs1=x2 rs2=x8 rd=x8
+    imm=0x28
+    rs1_val=0x11420 rs2_val=0x11430
+  IF pc: 0x1020c
+    raw_inst: 0x3010413
+==============================
+Step: 141
+==============================
+  WB: r2 = 0x113f0 (from ALU)
+  SW addr: 0x1141c
+  EXEC: SW rd=x8 rs1=x2 rs2=x8 | x2=0x113f0 x8=0x11430 imm=0x28
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11418, Data=0x11430
+  EX result: 0x11418
+  Decoded Instruction: ADDI
+  ID pc: 0x1020c
+    rs1=x2 rs2=x16 rd=x8
+    imm=0x30
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x10210
+    raw_inst: 0xfca42e23
+==============================
+Step: 142
+==============================
+  SW addr: 0x11418
+  EXEC: ADDI rd=x8 rs1=x2 rs2=x16 | x2=0x113f0 x16=0x0 imm=0x30
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70640
+Input2 source = Immediate
+Selected Input2 value = 48
+ADDI Result: 70688
+  EX result: 0x11420
+  Decoded Instruction: SW
+  ID pc: 0x10210
+    rs1=x8 rs2=x10 rd=x28
+    imm=0xffffffdc
+    rs1_val=0x11430 rs2_val=0x10424
+  IF pc: 0x10214
+    raw_inst: 0xfcb42c23
+==============================
+Step: 143
+==============================
+  FWD: x8 <- MEM/WB
+  FWD: x8 <- EX/MEM
+  EXEC: SW rd=x28 rs1=x8 rs2=x10 | x8=0x11420 x10=0x10424 imm=0xffffffdc
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113fc, Data=0x10424
+  EX result: 0x113fc
+  Decoded Instruction: SW
+  ID pc: 0x10214
+    rs1=x8 rs2=x11 rd=x24
+    imm=0xffffffd8
+    rs1_val=0x11430 rs2_val=0x3
+  IF pc: 0x10218
+    raw_inst: 0xfe042623
+==============================
+Step: 144
+==============================
+  WB: r8 = 0x11420 (from ALU)
+  SW addr: 0x113fc
+  EXEC: SW rd=x24 rs1=x8 rs2=x11 | x8=0x11420 x11=0x3 imm=0xffffffd8
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113f8, Data=0x3
+  EX result: 0x113f8
+  Decoded Instruction: SW
+  ID pc: 0x10218
+    rs1=x8 rs2=x0 rd=x12
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x1021c
+    raw_inst: 0x280006f
+==============================
+Step: 145
+==============================
+  SW addr: 0x113f8
+  EXEC: SW rd=x12 rs1=x8 rs2=x0 | x8=0x11420 x0=0x0 imm=0xffffffec
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1140c, Data=0x0
+  EX result: 0x1140c
+  Decoded Instruction: JAL
+  ID pc: 0x1021c
+    rs1=x0 rs2=x8 rd=x0
+    imm=0x28
+    rs1_val=0x0 rs2_val=0x11420
+  IF pc: 0x10220
+    raw_inst: 0xfdc42703
+==============================
+Step: 146
+==============================
+  SW addr: 0x1140c
+  EXEC: JAL rd=x0 rs1=x0 rs2=x8 | x0=0x0 x8=0x11420 imm=0x28
+  JAL: target=0x10244 link=0x10220
+ FLUSH: branch/jump taken, PC -> 0x10244
+  IF pc: 0x10244
+    raw_inst: 0xfec42703
+==============================
+Step: 147
+==============================
+  Decoded Instruction: LW
+  ID pc: 0x10244
+    rs1=x8 rs2=x12 rd=x14
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x10248
+    raw_inst: 0xfd842783
+==============================
+Step: 148
+==============================
+  EXEC: LW rd=x14 rs1=x8 rs2=x12 | x8=0x11420 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x10248
+    rs1=x8 rs2=x24 rd=x15
+    imm=0xffffffd8
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x1024c
+    raw_inst: 0xfcf76ae3
+==============================
+Step: 149
+==============================
+  LW addr: 0x1140c
+  EXEC: LW rd=x15 rs1=x8 rs2=x24 | x8=0x11420 x24=0x0 imm=0xffffffd8
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113f8
+  EX result: 0x113f8
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 150
+==============================
+  WB: r14 = 0x0 (from MEM)
+  LW addr: 0x113f8
+  Decoded Instruction: BLTU
+  ID pc: 0x1024c
+    rs1=x14 rs2=x15 rd=x21
+    imm=0xffffffd4
+    rs1_val=0x0 rs2_val=0x10000
+  IF pc: 0x10250
+    raw_inst: 0x13
+==============================
+Step: 151
+==============================
+  WB: r15 = 0x3 (from MEM)
+  EXEC: BLTU rd=x21 rs1=x14 rs2=x15 | x14=0x0 x15=0x3 imm=0xffffffd4
+  BLTU: 0x0 < 0x3 ? TAKEN
+ FLUSH: branch/jump taken, PC -> 0x10220
+  IF pc: 0x10220
+    raw_inst: 0xfdc42703
+==============================
+Step: 152
+==============================
+  Decoded Instruction: LW
+  ID pc: 0x10220
+    rs1=x8 rs2=x28 rd=x14
+    imm=0xffffffdc
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x10224
+    raw_inst: 0xfec42783
+==============================
+Step: 153
+==============================
+  EXEC: LW rd=x14 rs1=x8 rs2=x28 | x8=0x11420 x28=0x0 imm=0xffffffdc
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113fc
+  EX result: 0x113fc
+  Decoded Instruction: LW
+  ID pc: 0x10224
+    rs1=x8 rs2=x12 rd=x15
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x10228
+    raw_inst: 0xf707b3
+==============================
+Step: 154
+==============================
+  LW addr: 0x113fc
+  EXEC: LW rd=x15 rs1=x8 rs2=x12 | x8=0x11420 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 155
+==============================
+  WB: r14 = 0x10424 (from MEM)
+  LW addr: 0x1140c
+  Decoded Instruction: ADD
+  ID pc: 0x10228
+    rs1=x14 rs2=x15 rd=x15
+    rs1_val=0x10424 rs2_val=0x3
+  IF pc: 0x1022c
+    raw_inst: 0x7c783
+==============================
+Step: 156
+==============================
+  WB: r15 = 0x0 (from MEM)
+  EXEC: ADD rd=x15 rs1=x14 rs2=x15 | x14=0x10424 x15=0x0
+execute_inst: id=0x33 (ADD)
+Instruction ID ADD 0x33
+  EX result: 0x10424
+  Decoded Instruction: LBU
+  ID pc: 0x1022c
+    rs1=x15 rs2=x0 rd=x15
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10230
+    raw_inst: 0x78513
+==============================
+Step: 157
+==============================
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: LBU rd=x15 rs1=x15 rs2=x0 | x15=0x10424 x0=0x0
+execute_inst: id=0x203 (LBU)
+Instruction ID LBU 0x203
+  EX result: 0x10424
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 158
+==============================
+  WB: r15 = 0x10424 (from ALU)
+  LB/LBU addr: 0x10424
+  Decoded Instruction: ADDI
+  ID pc: 0x10230
+    rs1=x15 rs2=x0 rd=x10
+    rs1_val=0x10424 rs2_val=0x0
+  IF pc: 0x10234
+    raw_inst: 0xf95ff0ef
+==============================
+Step: 159
+==============================
+  WB: r15 = 0x61 (from MEM)
+  EXEC: ADDI rd=x10 rs1=x15 rs2=x0 | x15=0x61 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 97
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 97
+  EX result: 0x61
+  Decoded Instruction: JAL
+  ID pc: 0x10234
+    rs1=x31 rs2=x21 rd=x1
+    imm=0xffffff94
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10238
+    raw_inst: 0xfec42783
+==============================
+Step: 160
+==============================
+  EXEC: JAL rd=x1 rs1=x31 rs2=x21 | x31=0x0 x21=0x0 imm=0xffffff94
+  JAL: target=0x101c8 link=0x10238
+ FLUSH: branch/jump taken, PC -> 0x101c8
+  IF pc: 0x101c8
+    raw_inst: 0xfe010113
+==============================
+Step: 161
+==============================
+  WB: r10 = 0x61 (from ALU)
+  Decoded Instruction: ADDI
+  ID pc: 0x101c8
+    rs1=x2 rs2=x0 rd=x2
+    imm=0xffffffe0
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x101cc
+    raw_inst: 0x112e23
+==============================
+Step: 162
+==============================
+  WB: r1 = 0x10238 (from ALU)
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x0 | x2=0x113f0 x0=0x0 imm=0xffffffe0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70640
+Input2 source = Immediate
+Selected Input2 value = 4294967264
+ADDI Result: 70608
+  EX result: 0x113d0
+  Decoded Instruction: SW
+  ID pc: 0x101cc
+    rs1=x2 rs2=x1 rd=x28
+    imm=0x1c
+    rs1_val=0x113f0 rs2_val=0x10238
+  IF pc: 0x101d0
+    raw_inst: 0x812c23
+==============================
+Step: 163
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: SW rd=x28 rs1=x2 rs2=x1 | x2=0x113d0 x1=0x10238 imm=0x1c
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113ec, Data=0x10238
+  EX result: 0x113ec
+  Decoded Instruction: SW
+  ID pc: 0x101d0
+    rs1=x2 rs2=x8 rd=x24
+    imm=0x18
+    rs1_val=0x113f0 rs2_val=0x11420
+  IF pc: 0x101d4
+    raw_inst: 0x2010413
+==============================
+Step: 164
+==============================
+  WB: r2 = 0x113d0 (from ALU)
+  SW addr: 0x113ec
+  EXEC: SW rd=x24 rs1=x2 rs2=x8 | x2=0x113d0 x8=0x11420 imm=0x18
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113e8, Data=0x11420
+  EX result: 0x113e8
+  Decoded Instruction: ADDI
+  ID pc: 0x101d4
+    rs1=x2 rs2=x0 rd=x8
+    imm=0x20
+    rs1_val=0x113d0 rs2_val=0x0
+  IF pc: 0x101d8
+    raw_inst: 0xfea42623
+==============================
+Step: 165
+==============================
+  SW addr: 0x113e8
+  EXEC: ADDI rd=x8 rs1=x2 rs2=x0 | x2=0x113d0 x0=0x0 imm=0x20
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70608
+Input2 source = Immediate
+Selected Input2 value = 32
+ADDI Result: 70640
+  EX result: 0x113f0
+  Decoded Instruction: SW
+  ID pc: 0x101d8
+    rs1=x8 rs2=x10 rd=x12
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x61
+  IF pc: 0x101dc
+    raw_inst: 0x100007b7
+==============================
+Step: 166
+==============================
+  FWD: x8 <- MEM/WB
+  FWD: x8 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x8 rs2=x10 | x8=0x113f0 x10=0x61 imm=0xffffffec
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113dc, Data=0x61
+  EX result: 0x113dc
+  Decoded Instruction: LUI
+  ID pc: 0x101dc
+    rs1=x0 rs2=x0 rd=x15
+    imm=0x10000000
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x101e0
+    raw_inst: 0xfec42703
+==============================
+Step: 167
+==============================
+  WB: r8 = 0x113f0 (from ALU)
+  SW addr: 0x113dc
+  EXEC: LUI rd=x15 rs1=x0 rs2=x0 | x0=0x0 x0=0x0 imm=0x10000000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x10000000
+  EX result: 0x10000000
+  Decoded Instruction: LW
+  ID pc: 0x101e0
+    rs1=x8 rs2=x12 rd=x14
+    imm=0xffffffec
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x101e4
+    raw_inst: 0xff77713
+==============================
+Step: 168
+==============================
+  EXEC: LW rd=x14 rs1=x8 rs2=x12 | x8=0x113f0 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113dc
+  EX result: 0x113dc
+  LOAD-USE hazard detected: waiting for x14
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 169
+==============================
+  WB: r15 = 0x10000000 (from ALU)
+  LW addr: 0x113dc
+  Decoded Instruction: ANDI
+  ID pc: 0x101e4
+    rs1=x14 rs2=x31 rd=x14
+    imm=0xff
+    rs1_val=0x10424 rs2_val=0x0
+  IF pc: 0x101e8
+    raw_inst: 0xe7a023
+==============================
+Step: 170
+==============================
+  WB: r14 = 0x61 (from MEM)
+  EXEC: ANDI rd=x14 rs1=x14 rs2=x31 | x14=0x61 x31=0x0 imm=0xff
+execute_inst: id=0x393 (ANDI)
+Instruction ID ANDI 0x393
+ANDI: in1=97, imm=255, result=97
+  EX result: 0x61
+  Decoded Instruction: SW
+  ID pc: 0x101e8
+    rs1=x15 rs2=x14 rd=x0
+    rs1_val=0x10000000 rs2_val=0x61
+  IF pc: 0x101ec
+    raw_inst: 0x13
+==============================
+Step: 171
+==============================
+  FWD: x14 <- MEM/WB
+  FWD: x14 <- EX/MEM
+  EXEC: SW rd=x0 rs1=x15 rs2=x14 | x15=0x10000000 x14=0x61
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x10000000, Data=0x61
+  EX result: 0x10000000
+  Decoded Instruction: ADDI
+  ID pc: 0x101ec
+    rs1=x0 rs2=x0 rd=x0
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x101f0
+    raw_inst: 0x1c12083
+==============================
+Step: 172
+==============================
+  WB: r14 = 0x61 (from ALU)
+  SW addr: 0x10000000
+  EXEC: ADDI rd=x0 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: LW
+  ID pc: 0x101f0
+    rs1=x2 rs2=x28 rd=x1
+    imm=0x1c
+    rs1_val=0x113d0 rs2_val=0x0
+  IF pc: 0x101f4
+    raw_inst: 0x1812403
+==============================
+Step: 173
+==============================
+  EXEC: LW rd=x1 rs1=x2 rs2=x28 | x2=0x113d0 x28=0x0 imm=0x1c
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113ec
+  EX result: 0x113ec
+  Decoded Instruction: LW
+  ID pc: 0x101f4
+    rs1=x2 rs2=x24 rd=x8
+    imm=0x18
+    rs1_val=0x113d0 rs2_val=0x0
+  IF pc: 0x101f8
+    raw_inst: 0x2010113
+==============================
+Step: 174
+==============================
+  LW addr: 0x113ec
+  EXEC: LW rd=x8 rs1=x2 rs2=x24 | x2=0x113d0 x24=0x0 imm=0x18
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113e8
+  EX result: 0x113e8
+  Decoded Instruction: ADDI
+  ID pc: 0x101f8
+    rs1=x2 rs2=x0 rd=x2
+    imm=0x20
+    rs1_val=0x113d0 rs2_val=0x0
+  IF pc: 0x101fc
+    raw_inst: 0x8067
+==============================
+Step: 175
+==============================
+  WB: r1 = 0x10238 (from MEM)
+  LW addr: 0x113e8
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x0 | x2=0x113d0 x0=0x0 imm=0x20
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70608
+Input2 source = Immediate
+Selected Input2 value = 32
+ADDI Result: 70640
+  EX result: 0x113f0
+  Decoded Instruction: JALR
+  ID pc: 0x101fc
+    rs1=x1 rs2=x0 rd=x0
+    rs1_val=0x10238 rs2_val=0x0
+  IF pc: 0x10200
+    raw_inst: 0xfd010113
+==============================
+Step: 176
+==============================
+  WB: r8 = 0x11420 (from MEM)
+  EXEC: JALR rd=x0 rs1=x1 rs2=x0 | x1=0x10238 x0=0x0
+  JALR: target=0x10238 link=0x10200
+ FLUSH: branch/jump taken, PC -> 0x10238
+  IF pc: 0x10238
+    raw_inst: 0xfec42783
+==============================
+Step: 177
+==============================
+  WB: r2 = 0x113f0 (from ALU)
+  Decoded Instruction: LW
+  ID pc: 0x10238
+    rs1=x8 rs2=x12 rd=x15
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x1023c
+    raw_inst: 0x178793
+==============================
+Step: 178
+==============================
+  EXEC: LW rd=x15 rs1=x8 rs2=x12 | x8=0x11420 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 179
+==============================
+  LW addr: 0x1140c
+  Decoded Instruction: ADDI
+  ID pc: 0x1023c
+    rs1=x15 rs2=x1 rd=x15
+    imm=0x1
+    rs1_val=0x10000000 rs2_val=0x10238
+  IF pc: 0x10240
+    raw_inst: 0xfef42623
+==============================
+Step: 180
+==============================
+  WB: r15 = 0x0 (from MEM)
+  EXEC: ADDI rd=x15 rs1=x15 rs2=x1 | x15=0x0 x1=0x10238 imm=0x1
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 1
+ADDI Result: 1
+  EX result: 0x1
+  Decoded Instruction: SW
+  ID pc: 0x10240
+    rs1=x8 rs2=x15 rd=x12
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x10244
+    raw_inst: 0xfec42703
+==============================
+Step: 181
+==============================
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x8 rs2=x15 | x8=0x11420 x15=0x1 imm=0xffffffec
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1140c, Data=0x1
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x10244
+    rs1=x8 rs2=x12 rd=x14
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x10248
+    raw_inst: 0xfd842783
+==============================
+Step: 182
+==============================
+  WB: r15 = 0x1 (from ALU)
+  SW addr: 0x1140c
+  EXEC: LW rd=x14 rs1=x8 rs2=x12 | x8=0x11420 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x10248
+    rs1=x8 rs2=x24 rd=x15
+    imm=0xffffffd8
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x1024c
+    raw_inst: 0xfcf76ae3
+==============================
+Step: 183
+==============================
+  LW addr: 0x1140c
+  EXEC: LW rd=x15 rs1=x8 rs2=x24 | x8=0x11420 x24=0x0 imm=0xffffffd8
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113f8
+  EX result: 0x113f8
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 184
+==============================
+  WB: r14 = 0x1 (from MEM)
+  LW addr: 0x113f8
+  Decoded Instruction: BLTU
+  ID pc: 0x1024c
+    rs1=x14 rs2=x15 rd=x21
+    imm=0xffffffd4
+    rs1_val=0x1 rs2_val=0x1
+  IF pc: 0x10250
+    raw_inst: 0x13
+==============================
+Step: 185
+==============================
+  WB: r15 = 0x3 (from MEM)
+  EXEC: BLTU rd=x21 rs1=x14 rs2=x15 | x14=0x1 x15=0x3 imm=0xffffffd4
+  BLTU: 0x1 < 0x3 ? TAKEN
+ FLUSH: branch/jump taken, PC -> 0x10220
+  IF pc: 0x10220
+    raw_inst: 0xfdc42703
+==============================
+Step: 186
+==============================
+  Decoded Instruction: LW
+  ID pc: 0x10220
+    rs1=x8 rs2=x28 rd=x14
+    imm=0xffffffdc
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x10224
+    raw_inst: 0xfec42783
+==============================
+Step: 187
+==============================
+  EXEC: LW rd=x14 rs1=x8 rs2=x28 | x8=0x11420 x28=0x0 imm=0xffffffdc
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113fc
+  EX result: 0x113fc
+  Decoded Instruction: LW
+  ID pc: 0x10224
+    rs1=x8 rs2=x12 rd=x15
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x10228
+    raw_inst: 0xf707b3
+==============================
+Step: 188
+==============================
+  LW addr: 0x113fc
+  EXEC: LW rd=x15 rs1=x8 rs2=x12 | x8=0x11420 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 189
+==============================
+  WB: r14 = 0x10424 (from MEM)
+  LW addr: 0x1140c
+  Decoded Instruction: ADD
+  ID pc: 0x10228
+    rs1=x14 rs2=x15 rd=x15
+    rs1_val=0x10424 rs2_val=0x3
+  IF pc: 0x1022c
+    raw_inst: 0x7c783
+==============================
+Step: 190
+==============================
+  WB: r15 = 0x1 (from MEM)
+  EXEC: ADD rd=x15 rs1=x14 rs2=x15 | x14=0x10424 x15=0x1
+execute_inst: id=0x33 (ADD)
+Instruction ID ADD 0x33
+  EX result: 0x10425
+  Decoded Instruction: LBU
+  ID pc: 0x1022c
+    rs1=x15 rs2=x0 rd=x15
+    rs1_val=0x1 rs2_val=0x0
+  IF pc: 0x10230
+    raw_inst: 0x78513
+==============================
+Step: 191
+==============================
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: LBU rd=x15 rs1=x15 rs2=x0 | x15=0x10425 x0=0x0
+execute_inst: id=0x203 (LBU)
+Instruction ID LBU 0x203
+  EX result: 0x10425
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 192
+==============================
+  WB: r15 = 0x10425 (from ALU)
+  LB/LBU addr: 0x10425
+  Decoded Instruction: ADDI
+  ID pc: 0x10230
+    rs1=x15 rs2=x0 rd=x10
+    rs1_val=0x10425 rs2_val=0x0
+  IF pc: 0x10234
+    raw_inst: 0xf95ff0ef
+==============================
+Step: 193
+==============================
+  WB: r15 = 0x62 (from MEM)
+  EXEC: ADDI rd=x10 rs1=x15 rs2=x0 | x15=0x62 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 98
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 98
+  EX result: 0x62
+  Decoded Instruction: JAL
+  ID pc: 0x10234
+    rs1=x31 rs2=x21 rd=x1
+    imm=0xffffff94
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10238
+    raw_inst: 0xfec42783
+==============================
+Step: 194
+==============================
+  EXEC: JAL rd=x1 rs1=x31 rs2=x21 | x31=0x0 x21=0x0 imm=0xffffff94
+  JAL: target=0x101c8 link=0x10238
+ FLUSH: branch/jump taken, PC -> 0x101c8
+  IF pc: 0x101c8
+    raw_inst: 0xfe010113
+==============================
+Step: 195
+==============================
+  WB: r10 = 0x62 (from ALU)
+  Decoded Instruction: ADDI
+  ID pc: 0x101c8
+    rs1=x2 rs2=x0 rd=x2
+    imm=0xffffffe0
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x101cc
+    raw_inst: 0x112e23
+==============================
+Step: 196
+==============================
+  WB: r1 = 0x10238 (from ALU)
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x0 | x2=0x113f0 x0=0x0 imm=0xffffffe0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70640
+Input2 source = Immediate
+Selected Input2 value = 4294967264
+ADDI Result: 70608
+  EX result: 0x113d0
+  Decoded Instruction: SW
+  ID pc: 0x101cc
+    rs1=x2 rs2=x1 rd=x28
+    imm=0x1c
+    rs1_val=0x113f0 rs2_val=0x10238
+  IF pc: 0x101d0
+    raw_inst: 0x812c23
+==============================
+Step: 197
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: SW rd=x28 rs1=x2 rs2=x1 | x2=0x113d0 x1=0x10238 imm=0x1c
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113ec, Data=0x10238
+  EX result: 0x113ec
+  Decoded Instruction: SW
+  ID pc: 0x101d0
+    rs1=x2 rs2=x8 rd=x24
+    imm=0x18
+    rs1_val=0x113f0 rs2_val=0x11420
+  IF pc: 0x101d4
+    raw_inst: 0x2010413
+==============================
+Step: 198
+==============================
+  WB: r2 = 0x113d0 (from ALU)
+  SW addr: 0x113ec
+  EXEC: SW rd=x24 rs1=x2 rs2=x8 | x2=0x113d0 x8=0x11420 imm=0x18
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113e8, Data=0x11420
+  EX result: 0x113e8
+  Decoded Instruction: ADDI
+  ID pc: 0x101d4
+    rs1=x2 rs2=x0 rd=x8
+    imm=0x20
+    rs1_val=0x113d0 rs2_val=0x0
+  IF pc: 0x101d8
+    raw_inst: 0xfea42623
+==============================
+Step: 199
+==============================
+  SW addr: 0x113e8
+  EXEC: ADDI rd=x8 rs1=x2 rs2=x0 | x2=0x113d0 x0=0x0 imm=0x20
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70608
+Input2 source = Immediate
+Selected Input2 value = 32
+ADDI Result: 70640
+  EX result: 0x113f0
+  Decoded Instruction: SW
+  ID pc: 0x101d8
+    rs1=x8 rs2=x10 rd=x12
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x62
+  IF pc: 0x101dc
+    raw_inst: 0x100007b7
+==============================
+Step: 200
+==============================
+  FWD: x8 <- MEM/WB
+  FWD: x8 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x8 rs2=x10 | x8=0x113f0 x10=0x62 imm=0xffffffec
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113dc, Data=0x62
+  EX result: 0x113dc
+  Decoded Instruction: LUI
+  ID pc: 0x101dc
+    rs1=x0 rs2=x0 rd=x15
+    imm=0x10000000
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x101e0
+    raw_inst: 0xfec42703
+==============================
+Step: 201
+==============================
+  WB: r8 = 0x113f0 (from ALU)
+  SW addr: 0x113dc
+  EXEC: LUI rd=x15 rs1=x0 rs2=x0 | x0=0x0 x0=0x0 imm=0x10000000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x10000000
+  EX result: 0x10000000
+  Decoded Instruction: LW
+  ID pc: 0x101e0
+    rs1=x8 rs2=x12 rd=x14
+    imm=0xffffffec
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x101e4
+    raw_inst: 0xff77713
+==============================
+Step: 202
+==============================
+  EXEC: LW rd=x14 rs1=x8 rs2=x12 | x8=0x113f0 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113dc
+  EX result: 0x113dc
+  LOAD-USE hazard detected: waiting for x14
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 203
+==============================
+  WB: r15 = 0x10000000 (from ALU)
+  LW addr: 0x113dc
+  Decoded Instruction: ANDI
+  ID pc: 0x101e4
+    rs1=x14 rs2=x31 rd=x14
+    imm=0xff
+    rs1_val=0x10424 rs2_val=0x0
+  IF pc: 0x101e8
+    raw_inst: 0xe7a023
+==============================
+Step: 204
+==============================
+  WB: r14 = 0x62 (from MEM)
+  EXEC: ANDI rd=x14 rs1=x14 rs2=x31 | x14=0x62 x31=0x0 imm=0xff
+execute_inst: id=0x393 (ANDI)
+Instruction ID ANDI 0x393
+ANDI: in1=98, imm=255, result=98
+  EX result: 0x62
+  Decoded Instruction: SW
+  ID pc: 0x101e8
+    rs1=x15 rs2=x14 rd=x0
+    rs1_val=0x10000000 rs2_val=0x62
+  IF pc: 0x101ec
+    raw_inst: 0x13
+==============================
+Step: 205
+==============================
+  FWD: x14 <- MEM/WB
+  FWD: x14 <- EX/MEM
+  EXEC: SW rd=x0 rs1=x15 rs2=x14 | x15=0x10000000 x14=0x62
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x10000000, Data=0x62
+  EX result: 0x10000000
+  Decoded Instruction: ADDI
+  ID pc: 0x101ec
+    rs1=x0 rs2=x0 rd=x0
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x101f0
+    raw_inst: 0x1c12083
+==============================
+Step: 206
+==============================
+  WB: r14 = 0x62 (from ALU)
+  SW addr: 0x10000000
+  EXEC: ADDI rd=x0 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: LW
+  ID pc: 0x101f0
+    rs1=x2 rs2=x28 rd=x1
+    imm=0x1c
+    rs1_val=0x113d0 rs2_val=0x0
+  IF pc: 0x101f4
+    raw_inst: 0x1812403
+==============================
+Step: 207
+==============================
+  EXEC: LW rd=x1 rs1=x2 rs2=x28 | x2=0x113d0 x28=0x0 imm=0x1c
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113ec
+  EX result: 0x113ec
+  Decoded Instruction: LW
+  ID pc: 0x101f4
+    rs1=x2 rs2=x24 rd=x8
+    imm=0x18
+    rs1_val=0x113d0 rs2_val=0x0
+  IF pc: 0x101f8
+    raw_inst: 0x2010113
+==============================
+Step: 208
+==============================
+  LW addr: 0x113ec
+  EXEC: LW rd=x8 rs1=x2 rs2=x24 | x2=0x113d0 x24=0x0 imm=0x18
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113e8
+  EX result: 0x113e8
+  Decoded Instruction: ADDI
+  ID pc: 0x101f8
+    rs1=x2 rs2=x0 rd=x2
+    imm=0x20
+    rs1_val=0x113d0 rs2_val=0x0
+  IF pc: 0x101fc
+    raw_inst: 0x8067
+==============================
+Step: 209
+==============================
+  WB: r1 = 0x10238 (from MEM)
+  LW addr: 0x113e8
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x0 | x2=0x113d0 x0=0x0 imm=0x20
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70608
+Input2 source = Immediate
+Selected Input2 value = 32
+ADDI Result: 70640
+  EX result: 0x113f0
+  Decoded Instruction: JALR
+  ID pc: 0x101fc
+    rs1=x1 rs2=x0 rd=x0
+    rs1_val=0x10238 rs2_val=0x0
+  IF pc: 0x10200
+    raw_inst: 0xfd010113
+==============================
+Step: 210
+==============================
+  WB: r8 = 0x11420 (from MEM)
+  EXEC: JALR rd=x0 rs1=x1 rs2=x0 | x1=0x10238 x0=0x0
+  JALR: target=0x10238 link=0x10200
+ FLUSH: branch/jump taken, PC -> 0x10238
+  IF pc: 0x10238
+    raw_inst: 0xfec42783
+==============================
+Step: 211
+==============================
+  WB: r2 = 0x113f0 (from ALU)
+  Decoded Instruction: LW
+  ID pc: 0x10238
+    rs1=x8 rs2=x12 rd=x15
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x1023c
+    raw_inst: 0x178793
+==============================
+Step: 212
+==============================
+  EXEC: LW rd=x15 rs1=x8 rs2=x12 | x8=0x11420 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 213
+==============================
+  LW addr: 0x1140c
+  Decoded Instruction: ADDI
+  ID pc: 0x1023c
+    rs1=x15 rs2=x1 rd=x15
+    imm=0x1
+    rs1_val=0x10000000 rs2_val=0x10238
+  IF pc: 0x10240
+    raw_inst: 0xfef42623
+==============================
+Step: 214
+==============================
+  WB: r15 = 0x1 (from MEM)
+  EXEC: ADDI rd=x15 rs1=x15 rs2=x1 | x15=0x1 x1=0x10238 imm=0x1
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 1
+Input2 source = Immediate
+Selected Input2 value = 1
+ADDI Result: 2
+  EX result: 0x2
+  Decoded Instruction: SW
+  ID pc: 0x10240
+    rs1=x8 rs2=x15 rd=x12
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x1
+  IF pc: 0x10244
+    raw_inst: 0xfec42703
+==============================
+Step: 215
+==============================
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x8 rs2=x15 | x8=0x11420 x15=0x2 imm=0xffffffec
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1140c, Data=0x2
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x10244
+    rs1=x8 rs2=x12 rd=x14
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x10248
+    raw_inst: 0xfd842783
+==============================
+Step: 216
+==============================
+  WB: r15 = 0x2 (from ALU)
+  SW addr: 0x1140c
+  EXEC: LW rd=x14 rs1=x8 rs2=x12 | x8=0x11420 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x10248
+    rs1=x8 rs2=x24 rd=x15
+    imm=0xffffffd8
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x1024c
+    raw_inst: 0xfcf76ae3
+==============================
+Step: 217
+==============================
+  LW addr: 0x1140c
+  EXEC: LW rd=x15 rs1=x8 rs2=x24 | x8=0x11420 x24=0x0 imm=0xffffffd8
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113f8
+  EX result: 0x113f8
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 218
+==============================
+  WB: r14 = 0x2 (from MEM)
+  LW addr: 0x113f8
+  Decoded Instruction: BLTU
+  ID pc: 0x1024c
+    rs1=x14 rs2=x15 rd=x21
+    imm=0xffffffd4
+    rs1_val=0x2 rs2_val=0x2
+  IF pc: 0x10250
+    raw_inst: 0x13
+==============================
+Step: 219
+==============================
+  WB: r15 = 0x3 (from MEM)
+  EXEC: BLTU rd=x21 rs1=x14 rs2=x15 | x14=0x2 x15=0x3 imm=0xffffffd4
+  BLTU: 0x2 < 0x3 ? TAKEN
+ FLUSH: branch/jump taken, PC -> 0x10220
+  IF pc: 0x10220
+    raw_inst: 0xfdc42703
+==============================
+Step: 220
+==============================
+  Decoded Instruction: LW
+  ID pc: 0x10220
+    rs1=x8 rs2=x28 rd=x14
+    imm=0xffffffdc
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x10224
+    raw_inst: 0xfec42783
+==============================
+Step: 221
+==============================
+  EXEC: LW rd=x14 rs1=x8 rs2=x28 | x8=0x11420 x28=0x0 imm=0xffffffdc
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113fc
+  EX result: 0x113fc
+  Decoded Instruction: LW
+  ID pc: 0x10224
+    rs1=x8 rs2=x12 rd=x15
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x10228
+    raw_inst: 0xf707b3
+==============================
+Step: 222
+==============================
+  LW addr: 0x113fc
+  EXEC: LW rd=x15 rs1=x8 rs2=x12 | x8=0x11420 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 223
+==============================
+  WB: r14 = 0x10424 (from MEM)
+  LW addr: 0x1140c
+  Decoded Instruction: ADD
+  ID pc: 0x10228
+    rs1=x14 rs2=x15 rd=x15
+    rs1_val=0x10424 rs2_val=0x3
+  IF pc: 0x1022c
+    raw_inst: 0x7c783
+==============================
+Step: 224
+==============================
+  WB: r15 = 0x2 (from MEM)
+  EXEC: ADD rd=x15 rs1=x14 rs2=x15 | x14=0x10424 x15=0x2
+execute_inst: id=0x33 (ADD)
+Instruction ID ADD 0x33
+  EX result: 0x10426
+  Decoded Instruction: LBU
+  ID pc: 0x1022c
+    rs1=x15 rs2=x0 rd=x15
+    rs1_val=0x2 rs2_val=0x0
+  IF pc: 0x10230
+    raw_inst: 0x78513
+==============================
+Step: 225
+==============================
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: LBU rd=x15 rs1=x15 rs2=x0 | x15=0x10426 x0=0x0
+execute_inst: id=0x203 (LBU)
+Instruction ID LBU 0x203
+  EX result: 0x10426
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 226
+==============================
+  WB: r15 = 0x10426 (from ALU)
+  LB/LBU addr: 0x10426
+  Decoded Instruction: ADDI
+  ID pc: 0x10230
+    rs1=x15 rs2=x0 rd=x10
+    rs1_val=0x10426 rs2_val=0x0
+  IF pc: 0x10234
+    raw_inst: 0xf95ff0ef
+==============================
+Step: 227
+==============================
+  WB: r15 = 0x63 (from MEM)
+  EXEC: ADDI rd=x10 rs1=x15 rs2=x0 | x15=0x63 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 99
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 99
+  EX result: 0x63
+  Decoded Instruction: JAL
+  ID pc: 0x10234
+    rs1=x31 rs2=x21 rd=x1
+    imm=0xffffff94
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10238
+    raw_inst: 0xfec42783
+==============================
+Step: 228
+==============================
+  EXEC: JAL rd=x1 rs1=x31 rs2=x21 | x31=0x0 x21=0x0 imm=0xffffff94
+  JAL: target=0x101c8 link=0x10238
+ FLUSH: branch/jump taken, PC -> 0x101c8
+  IF pc: 0x101c8
+    raw_inst: 0xfe010113
+==============================
+Step: 229
+==============================
+  WB: r10 = 0x63 (from ALU)
+  Decoded Instruction: ADDI
+  ID pc: 0x101c8
+    rs1=x2 rs2=x0 rd=x2
+    imm=0xffffffe0
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x101cc
+    raw_inst: 0x112e23
+==============================
+Step: 230
+==============================
+  WB: r1 = 0x10238 (from ALU)
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x0 | x2=0x113f0 x0=0x0 imm=0xffffffe0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70640
+Input2 source = Immediate
+Selected Input2 value = 4294967264
+ADDI Result: 70608
+  EX result: 0x113d0
+  Decoded Instruction: SW
+  ID pc: 0x101cc
+    rs1=x2 rs2=x1 rd=x28
+    imm=0x1c
+    rs1_val=0x113f0 rs2_val=0x10238
+  IF pc: 0x101d0
+    raw_inst: 0x812c23
+==============================
+Step: 231
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: SW rd=x28 rs1=x2 rs2=x1 | x2=0x113d0 x1=0x10238 imm=0x1c
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113ec, Data=0x10238
+  EX result: 0x113ec
+  Decoded Instruction: SW
+  ID pc: 0x101d0
+    rs1=x2 rs2=x8 rd=x24
+    imm=0x18
+    rs1_val=0x113f0 rs2_val=0x11420
+  IF pc: 0x101d4
+    raw_inst: 0x2010413
+==============================
+Step: 232
+==============================
+  WB: r2 = 0x113d0 (from ALU)
+  SW addr: 0x113ec
+  EXEC: SW rd=x24 rs1=x2 rs2=x8 | x2=0x113d0 x8=0x11420 imm=0x18
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113e8, Data=0x11420
+  EX result: 0x113e8
+  Decoded Instruction: ADDI
+  ID pc: 0x101d4
+    rs1=x2 rs2=x0 rd=x8
+    imm=0x20
+    rs1_val=0x113d0 rs2_val=0x0
+  IF pc: 0x101d8
+    raw_inst: 0xfea42623
+==============================
+Step: 233
+==============================
+  SW addr: 0x113e8
+  EXEC: ADDI rd=x8 rs1=x2 rs2=x0 | x2=0x113d0 x0=0x0 imm=0x20
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70608
+Input2 source = Immediate
+Selected Input2 value = 32
+ADDI Result: 70640
+  EX result: 0x113f0
+  Decoded Instruction: SW
+  ID pc: 0x101d8
+    rs1=x8 rs2=x10 rd=x12
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x63
+  IF pc: 0x101dc
+    raw_inst: 0x100007b7
+==============================
+Step: 234
+==============================
+  FWD: x8 <- MEM/WB
+  FWD: x8 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x8 rs2=x10 | x8=0x113f0 x10=0x63 imm=0xffffffec
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x113dc, Data=0x63
+  EX result: 0x113dc
+  Decoded Instruction: LUI
+  ID pc: 0x101dc
+    rs1=x0 rs2=x0 rd=x15
+    imm=0x10000000
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x101e0
+    raw_inst: 0xfec42703
+==============================
+Step: 235
+==============================
+  WB: r8 = 0x113f0 (from ALU)
+  SW addr: 0x113dc
+  EXEC: LUI rd=x15 rs1=x0 rs2=x0 | x0=0x0 x0=0x0 imm=0x10000000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x10000000
+  EX result: 0x10000000
+  Decoded Instruction: LW
+  ID pc: 0x101e0
+    rs1=x8 rs2=x12 rd=x14
+    imm=0xffffffec
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x101e4
+    raw_inst: 0xff77713
+==============================
+Step: 236
+==============================
+  EXEC: LW rd=x14 rs1=x8 rs2=x12 | x8=0x113f0 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113dc
+  EX result: 0x113dc
+  LOAD-USE hazard detected: waiting for x14
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 237
+==============================
+  WB: r15 = 0x10000000 (from ALU)
+  LW addr: 0x113dc
+  Decoded Instruction: ANDI
+  ID pc: 0x101e4
+    rs1=x14 rs2=x31 rd=x14
+    imm=0xff
+    rs1_val=0x10424 rs2_val=0x0
+  IF pc: 0x101e8
+    raw_inst: 0xe7a023
+==============================
+Step: 238
+==============================
+  WB: r14 = 0x63 (from MEM)
+  EXEC: ANDI rd=x14 rs1=x14 rs2=x31 | x14=0x63 x31=0x0 imm=0xff
+execute_inst: id=0x393 (ANDI)
+Instruction ID ANDI 0x393
+ANDI: in1=99, imm=255, result=99
+  EX result: 0x63
+  Decoded Instruction: SW
+  ID pc: 0x101e8
+    rs1=x15 rs2=x14 rd=x0
+    rs1_val=0x10000000 rs2_val=0x63
+  IF pc: 0x101ec
+    raw_inst: 0x13
+==============================
+Step: 239
+==============================
+  FWD: x14 <- MEM/WB
+  FWD: x14 <- EX/MEM
+  EXEC: SW rd=x0 rs1=x15 rs2=x14 | x15=0x10000000 x14=0x63
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x10000000, Data=0x63
+  EX result: 0x10000000
+  Decoded Instruction: ADDI
+  ID pc: 0x101ec
+    rs1=x0 rs2=x0 rd=x0
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x101f0
+    raw_inst: 0x1c12083
+==============================
+Step: 240
+==============================
+  WB: r14 = 0x63 (from ALU)
+  SW addr: 0x10000000
+  EXEC: ADDI rd=x0 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: LW
+  ID pc: 0x101f0
+    rs1=x2 rs2=x28 rd=x1
+    imm=0x1c
+    rs1_val=0x113d0 rs2_val=0x0
+  IF pc: 0x101f4
+    raw_inst: 0x1812403
+==============================
+Step: 241
+==============================
+  EXEC: LW rd=x1 rs1=x2 rs2=x28 | x2=0x113d0 x28=0x0 imm=0x1c
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113ec
+  EX result: 0x113ec
+  Decoded Instruction: LW
+  ID pc: 0x101f4
+    rs1=x2 rs2=x24 rd=x8
+    imm=0x18
+    rs1_val=0x113d0 rs2_val=0x0
+  IF pc: 0x101f8
+    raw_inst: 0x2010113
+==============================
+Step: 242
+==============================
+  LW addr: 0x113ec
+  EXEC: LW rd=x8 rs1=x2 rs2=x24 | x2=0x113d0 x24=0x0 imm=0x18
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113e8
+  EX result: 0x113e8
+  Decoded Instruction: ADDI
+  ID pc: 0x101f8
+    rs1=x2 rs2=x0 rd=x2
+    imm=0x20
+    rs1_val=0x113d0 rs2_val=0x0
+  IF pc: 0x101fc
+    raw_inst: 0x8067
+==============================
+Step: 243
+==============================
+  WB: r1 = 0x10238 (from MEM)
+  LW addr: 0x113e8
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x0 | x2=0x113d0 x0=0x0 imm=0x20
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70608
+Input2 source = Immediate
+Selected Input2 value = 32
+ADDI Result: 70640
+  EX result: 0x113f0
+  Decoded Instruction: JALR
+  ID pc: 0x101fc
+    rs1=x1 rs2=x0 rd=x0
+    rs1_val=0x10238 rs2_val=0x0
+  IF pc: 0x10200
+    raw_inst: 0xfd010113
+==============================
+Step: 244
+==============================
+  WB: r8 = 0x11420 (from MEM)
+  EXEC: JALR rd=x0 rs1=x1 rs2=x0 | x1=0x10238 x0=0x0
+  JALR: target=0x10238 link=0x10200
+ FLUSH: branch/jump taken, PC -> 0x10238
+  IF pc: 0x10238
+    raw_inst: 0xfec42783
+==============================
+Step: 245
+==============================
+  WB: r2 = 0x113f0 (from ALU)
+  Decoded Instruction: LW
+  ID pc: 0x10238
+    rs1=x8 rs2=x12 rd=x15
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x1023c
+    raw_inst: 0x178793
+==============================
+Step: 246
+==============================
+  EXEC: LW rd=x15 rs1=x8 rs2=x12 | x8=0x11420 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 247
+==============================
+  LW addr: 0x1140c
+  Decoded Instruction: ADDI
+  ID pc: 0x1023c
+    rs1=x15 rs2=x1 rd=x15
+    imm=0x1
+    rs1_val=0x10000000 rs2_val=0x10238
+  IF pc: 0x10240
+    raw_inst: 0xfef42623
+==============================
+Step: 248
+==============================
+  WB: r15 = 0x2 (from MEM)
+  EXEC: ADDI rd=x15 rs1=x15 rs2=x1 | x15=0x2 x1=0x10238 imm=0x1
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 2
+Input2 source = Immediate
+Selected Input2 value = 1
+ADDI Result: 3
+  EX result: 0x3
+  Decoded Instruction: SW
+  ID pc: 0x10240
+    rs1=x8 rs2=x15 rd=x12
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x2
+  IF pc: 0x10244
+    raw_inst: 0xfec42703
+==============================
+Step: 249
+==============================
+  FWD: x15 <- MEM/WB
+  FWD: x15 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x8 rs2=x15 | x8=0x11420 x15=0x3 imm=0xffffffec
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1140c, Data=0x3
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x10244
+    rs1=x8 rs2=x12 rd=x14
+    imm=0xffffffec
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x10248
+    raw_inst: 0xfd842783
+==============================
+Step: 250
+==============================
+  WB: r15 = 0x3 (from ALU)
+  SW addr: 0x1140c
+  EXEC: LW rd=x14 rs1=x8 rs2=x12 | x8=0x11420 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x10248
+    rs1=x8 rs2=x24 rd=x15
+    imm=0xffffffd8
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x1024c
+    raw_inst: 0xfcf76ae3
+==============================
+Step: 251
+==============================
+  LW addr: 0x1140c
+  EXEC: LW rd=x15 rs1=x8 rs2=x24 | x8=0x11420 x24=0x0 imm=0xffffffd8
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x113f8
+  EX result: 0x113f8
+  LOAD-USE hazard detected: waiting for x15
+  STALL inserted
+  Fetch stalled
+==============================
+Step: 252
+==============================
+  WB: r14 = 0x3 (from MEM)
+  LW addr: 0x113f8
+  Decoded Instruction: BLTU
+  ID pc: 0x1024c
+    rs1=x14 rs2=x15 rd=x21
+    imm=0xffffffd4
+    rs1_val=0x3 rs2_val=0x3
+  IF pc: 0x10250
+    raw_inst: 0x13
+==============================
+Step: 253
+==============================
+  WB: r15 = 0x3 (from MEM)
+  EXEC: BLTU rd=x21 rs1=x14 rs2=x15 | x14=0x3 x15=0x3 imm=0xffffffd4
+  BLTU: 0x3 < 0x3 ? NOT TAKEN
+  Decoded Instruction: ADDI
+  ID pc: 0x10250
+    rs1=x0 rs2=x0 rd=x0
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10254
+    raw_inst: 0x13
+==============================
+Step: 254
+==============================
+  EXEC: ADDI rd=x0 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: ADDI
+  ID pc: 0x10254
+    rs1=x0 rs2=x0 rd=x0
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10258
+    raw_inst: 0x2c12083
+==============================
+Step: 255
+==============================
+  EXEC: ADDI rd=x0 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: LW
+  ID pc: 0x10258
+    rs1=x2 rs2=x12 rd=x1
+    imm=0x2c
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x1025c
+    raw_inst: 0x2812403
+==============================
+Step: 256
+==============================
+  EXEC: LW rd=x1 rs1=x2 rs2=x12 | x2=0x113f0 x12=0x0 imm=0x2c
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1141c
+  EX result: 0x1141c
+  Decoded Instruction: LW
+  ID pc: 0x1025c
+    rs1=x2 rs2=x8 rd=x8
+    imm=0x28
+    rs1_val=0x113f0 rs2_val=0x11420
+  IF pc: 0x10260
+    raw_inst: 0x3010113
+==============================
+Step: 257
+==============================
+  LW addr: 0x1141c
+  EXEC: LW rd=x8 rs1=x2 rs2=x8 | x2=0x113f0 x8=0x11420 imm=0x28
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x11418
+  EX result: 0x11418
+  Decoded Instruction: ADDI
+  ID pc: 0x10260
+    rs1=x2 rs2=x16 rd=x2
+    imm=0x30
+    rs1_val=0x113f0 rs2_val=0x0
+  IF pc: 0x10264
+    raw_inst: 0x8067
+==============================
+Step: 258
+==============================
+  WB: r1 = 0x103f8 (from MEM)
+  LW addr: 0x11418
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x16 | x2=0x113f0 x16=0x0 imm=0x30
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70640
+Input2 source = Immediate
+Selected Input2 value = 48
+ADDI Result: 70688
+  EX result: 0x11420
+  Decoded Instruction: JALR
+  ID pc: 0x10264
+    rs1=x1 rs2=x0 rd=x0
+    rs1_val=0x103f8 rs2_val=0x0
+  IF pc: 0x10268
+    raw_inst: 0xfe010113
+==============================
+Step: 259
+==============================
+  WB: r8 = 0x11430 (from MEM)
+  EXEC: JALR rd=x0 rs1=x1 rs2=x0 | x1=0x103f8 x0=0x0
+  JALR: target=0x103f8 link=0x10268
+ FLUSH: branch/jump taken, PC -> 0x103f8
+  IF pc: 0x103f8
+    raw_inst: 0x100007b7
+==============================
+Step: 260
+==============================
+  WB: r2 = 0x11420 (from ALU)
+  Decoded Instruction: LUI
+  ID pc: 0x103f8
+    rs1=x0 rs2=x0 rd=x15
+    imm=0x10000000
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x103fc
+    raw_inst: 0xa00713
+==============================
+Step: 261
+==============================
+  EXEC: LUI rd=x15 rs1=x0 rs2=x0 | x0=0x0 x0=0x0 imm=0x10000000
+execute_inst: id=0x37 (LUI)
+Instruction ID LUI 0x37
+LUI: Result=0x10000000
+  EX result: 0x10000000
+  Decoded Instruction: ADDI
+  ID pc: 0x103fc
+    rs1=x0 rs2=x10 rd=x14
+    imm=0xa
+    rs1_val=0x0 rs2_val=0x63
+  IF pc: 0x10400
+    raw_inst: 0xe7a023
+==============================
+Step: 262
+==============================
+  EXEC: ADDI rd=x14 rs1=x0 rs2=x10 | x0=0x0 x10=0x63 imm=0xa
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 10
+ADDI Result: 10
+  EX result: 0xa
+  Decoded Instruction: SW
+  ID pc: 0x10400
+    rs1=x15 rs2=x14 rd=x0
+    rs1_val=0x3 rs2_val=0x3
+  IF pc: 0x10404
+    raw_inst: 0x513
+==============================
+Step: 263
+==============================
+  WB: r15 = 0x10000000 (from ALU)
+  FWD: x14 <- MEM/WB
+  FWD: x14 <- EX/MEM
+  EXEC: SW rd=x0 rs1=x15 rs2=x14 | x15=0x10000000 x14=0xa
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x10000000, Data=0xa
+  EX result: 0x10000000
+  Decoded Instruction: ADDI
+  ID pc: 0x10404
+    rs1=x0 rs2=x0 rd=x10
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x10408
+    raw_inst: 0xfa1ff0ef
+==============================
+Step: 264
+==============================
+  WB: r14 = 0xa (from ALU)
+  SW addr: 0x10000000
+  EXEC: ADDI rd=x10 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: JAL
+  ID pc: 0x10408
+    rs1=x31 rs2=x1 rd=x1
+    imm=0xffffffa0
+    rs1_val=0x0 rs2_val=0x103f8
+  IF pc: 0x1040c
+    raw_inst: 0x793
+==============================
+Step: 265
+==============================
+  EXEC: JAL rd=x1 rs1=x31 rs2=x1 | x31=0x0 x1=0x103f8 imm=0xffffffa0
+  JAL: target=0x103a8 link=0x1040c
+ FLUSH: branch/jump taken, PC -> 0x103a8
+  IF pc: 0x103a8
+    raw_inst: 0xfe010113
+==============================
+Step: 266
+==============================
+  WB: r10 = 0x0 (from ALU)
+  Decoded Instruction: ADDI
+  ID pc: 0x103a8
+    rs1=x2 rs2=x0 rd=x2
+    imm=0xffffffe0
+    rs1_val=0x11420 rs2_val=0x0
+  IF pc: 0x103ac
+    raw_inst: 0x112e23
+==============================
+Step: 267
+==============================
+  WB: r1 = 0x1040c (from ALU)
+  EXEC: ADDI rd=x2 rs1=x2 rs2=x0 | x2=0x11420 x0=0x0 imm=0xffffffe0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70688
+Input2 source = Immediate
+Selected Input2 value = 4294967264
+ADDI Result: 70656
+  EX result: 0x11400
+  Decoded Instruction: SW
+  ID pc: 0x103ac
+    rs1=x2 rs2=x1 rd=x28
+    imm=0x1c
+    rs1_val=0x11420 rs2_val=0x1040c
+  IF pc: 0x103b0
+    raw_inst: 0x812c23
+==============================
+Step: 268
+==============================
+  FWD: x2 <- MEM/WB
+  FWD: x2 <- EX/MEM
+  EXEC: SW rd=x28 rs1=x2 rs2=x1 | x2=0x11400 x1=0x1040c imm=0x1c
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1141c, Data=0x1040c
+  EX result: 0x1141c
+  Decoded Instruction: SW
+  ID pc: 0x103b0
+    rs1=x2 rs2=x8 rd=x24
+    imm=0x18
+    rs1_val=0x11420 rs2_val=0x11430
+  IF pc: 0x103b4
+    raw_inst: 0x2010413
+==============================
+Step: 269
+==============================
+  WB: r2 = 0x11400 (from ALU)
+  SW addr: 0x1141c
+  EXEC: SW rd=x24 rs1=x2 rs2=x8 | x2=0x11400 x8=0x11430 imm=0x18
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x11418, Data=0x11430
+  EX result: 0x11418
+  Decoded Instruction: ADDI
+  ID pc: 0x103b4
+    rs1=x2 rs2=x0 rd=x8
+    imm=0x20
+    rs1_val=0x11400 rs2_val=0x0
+  IF pc: 0x103b8
+    raw_inst: 0xfea42623
+==============================
+Step: 270
+==============================
+  SW addr: 0x11418
+  EXEC: ADDI rd=x8 rs1=x2 rs2=x0 | x2=0x11400 x0=0x0 imm=0x20
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 70656
+Input2 source = Immediate
+Selected Input2 value = 32
+ADDI Result: 70688
+  EX result: 0x11420
+  Decoded Instruction: SW
+  ID pc: 0x103b8
+    rs1=x8 rs2=x10 rd=x12
+    imm=0xffffffec
+    rs1_val=0x11430 rs2_val=0x0
+  IF pc: 0x103bc
+    raw_inst: 0xfec42783
+==============================
+Step: 271
+==============================
+  FWD: x8 <- MEM/WB
+  FWD: x8 <- EX/MEM
+  EXEC: SW rd=x12 rs1=x8 rs2=x10 | x8=0x11420 x10=0x0 imm=0xffffffec
+execute_inst: id=0x123 (SW)
+Instruction ID SW 0x123
+SW: Address=0x1140c, Data=0x0
+  EX result: 0x1140c
+  Decoded Instruction: LW
+  ID pc: 0x103bc
+    rs1=x8 rs2=x12 rd=x15
+    imm=0xffffffec
+    rs1_val=0x11430 rs2_val=0x0
+  IF pc: 0x103c0
+    raw_inst: 0x5d00893
+==============================
+Step: 272
+==============================
+  WB: r8 = 0x11420 (from ALU)
+  SW addr: 0x1140c
+  EXEC: LW rd=x15 rs1=x8 rs2=x12 | x8=0x11420 x12=0x0 imm=0xffffffec
+execute_inst: id=0x103 (LW)
+Instruction ID LW 0x103
+LW: Address=0x1140c
+  EX result: 0x1140c
+  Decoded Instruction: ADDI
+  ID pc: 0x103c0
+    rs1=x0 rs2=x29 rd=x17
+    imm=0x5d
+    rs1_val=0x0 rs2_val=0x0
+  IF pc: 0x103c4
+    raw_inst: 0x78513
+==============================
+Step: 273
+==============================
+  LW addr: 0x1140c
+  EXEC: ADDI rd=x17 rs1=x0 rs2=x29 | x0=0x0 x29=0x0 imm=0x5d
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 93
+ADDI Result: 93
+  EX result: 0x5d
+  Decoded Instruction: ADDI
+  ID pc: 0x103c4
+    rs1=x15 rs2=x0 rd=x10
+    rs1_val=0x10000000 rs2_val=0x0
+  IF pc: 0x103c8
+    raw_inst: 0x73
+==============================
+Step: 274
+==============================
+  WB: r15 = 0x0 (from MEM)
+  EXEC: ADDI rd=x10 rs1=x15 rs2=x0 | x15=0x0 x0=0x0
+execute_inst: id=0x13 (ADDI)
+Instruction ID ADDI 0x13
+Input1 value = 0
+Input2 source = Immediate
+Selected Input2 value = 0
+ADDI Result: 0
+  EX result: 0x0
+  Decoded Instruction: ECALL
+  ID pc: 0x103c8
+  IF pc: 0x103cc
+    raw_inst: 0x10500073
+==============================
+Step: 275
+==============================
+  WB: r17 = 0x5d (from ALU)
+  EXEC: ECALL rd=x0 rs1=x0 rs2=x0 | x0=0x0 x0=0x0
+  SYSCALL: exit(0)
+  ECALL: a7=93 a0=0 a1=3 a2=0
+Halted (ECALL/EBREAK).
+Ran 276 step(s). a0 (x10) = 0. exit_code = 0
+
+=== 运行后（设备/内存/统计） ===
+主存: 容量 262144 bytes, 基址 0x10000
+      已写入最高字节地址 0x2000c (相对基址 +65548 bytes)
+Timer MTIME: 275
+UART: TX 字符(送主机) 4, RX 字符(程序已读走) 0, 当前 RX FIFO 0
+
+
+Ran 276 steps.
+PC: 0x0x103d0
+Exit code: 0
+
+=== Final Register State ===
+x0: 0x0   x1: 0x1040c   x2: 0x11400   x3: 0x0
+x4: 0x0   x5: 0x0   x6: 0x0   x7: 0x0
+x8: 0x11420   x9: 0x0   xa: 0x0   xb: 0x3
+xc: 0x0   xd: 0x0   xe: 0xa   xf: 0x0
+x10: 0x0   x11: 0x5d   x12: 0x0   x13: 0x0
+x14: 0x0   x15: 0x0   x16: 0x0   x17: 0x0
+x18: 0x0   x19: 0x0   x1a: 0x0   x1b: 0x0
+x1c: 0x0   x1d: 0x0   x1e: 0x0   x1f: 0x0
+dump registers state pc: 0x103d0
+

@@ -1,0 +1,16 @@
+# Build outputs
+build/
+*.o
+*.d
+*.exe
+*.out
+my_sim/log/*
+# Executables in out directory (but keep source files)
+out/*
+my_sim/tools/interrupt/out
+# IDE files
+.vscode/
+.vs/
+# Python cache (if you have Python scripts)
+__pycache__/
+*.py[cod]

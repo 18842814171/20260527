@@ -1,0 +1,25 @@
+https://git.openruyi.cn/openRuyi-tutorials/build-linux-system-from-scratch  
+
+Demo A — Full OS On QEMU
+boot
+shell
+multitasking
+filesystem
+syscalls
+Demo B — Simulator Visualization
+
+Show:
+
+timer IRQ
+→ trap entry
+→ context save
+→ scheduler
+→ restore
+→ mret
+
+and:
+
+ecall
+→ trap
+→ syscall dispatch
+→ return
