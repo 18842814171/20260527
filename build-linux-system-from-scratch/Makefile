@@ -109,6 +109,7 @@ gcc-native:
 	@/usr/bin/bash ./package/mpfr/make.sh || exit 1
 	@/usr/bin/bash ./package/mpc/make.sh || exit 1
 	@/usr/bin/bash ./package/binutils/make.sh || exit 1
+	@/usr/bin/bash ./package/gcc/make-host-gxx.sh || exit 1
 	@/usr/bin/bash ./package/gcc/make.sh || exit 1
 
 .PHONY: osviz-tests

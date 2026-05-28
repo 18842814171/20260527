@@ -1,7 +1,23 @@
 #!/usr/bin/bash
 source $(dirname "$0")/../common.sh
 
-ROOTFS_EXT2_SIZE=128M
+ROOTFS_EXT2_SIZE=512M
+
+# target-finalize may have removed headers; restore before packing the image.
+if [ -x "${TARGET_DIR}/usr/bin/gcc" ] && [ ! -f "${TARGET_DIR}/usr/include/stdio.h" ]; then
+	echo ">>>   Restoring glibc headers for native gcc"
+	rsync -a "${STAGING_DIR}/usr/include/" "${TARGET_DIR}/usr/include/"
+	for f in crt1.o crti.o crtn.o Scrt1.o rcrt1.o; do
+		if [ -f "${STAGING_DIR}/usr/lib/${f}" ]; then
+			cp -a "${STAGING_DIR}/usr/lib/${f}" "${TARGET_DIR}/usr/lib/"
+		fi
+	done
+	for f in libc.so libc_nonshared.a; do
+		if [ -e "${STAGING_DIR}/usr/lib/${f}" ]; then
+			cp -a "${STAGING_DIR}/usr/lib/${f}" "${TARGET_DIR}/usr/lib/"
+		fi
+	done
+fi
 
 echo ">>>   Generating root filesystems common tables"
 rm -rf ${BUILD_DIR}/buildroot-fs

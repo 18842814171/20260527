@@ -41,26 +41,7 @@ cd ${PKGBUILD_DIR}/src;
 eval "${TARGET_MAKE_ENV} /usr/bin/make -j${MAXNUM_CPUS} DESTDIR=${TARGET_DIR} installrtbase"
 eval "${TARGET_MAKE_ENV} /usr/bin/make -j${MAXNUM_CPUS} DESTDIR=${TARGET_DIR} installmacros"
 rm -f -rf ${TARGET_DIR}/usr/share/vim/vim*/doc/
-# QEMU使用 -nographic 时，其模拟的是 vt220 类型的串口终端，
-# 这种终端无法自动适应宿主终端（如Xshell）的尺寸变化
-# 这导致系统启动后，如果我们输入 stty size 查看终端尺寸时，
-# 会发现行数和列数都是0，从而影响一些程序的显示效果，譬如 vim
-# 因此，我们在 /etc/profile 末尾添加一些代码，
-# 获取当前 host 的终端尺寸并在 guest 用户登录时动态设置终端的行数和列数
-if [ -f "${TARGET_DIR}/etc/profile" ]; then
-	read -r TERM_ROWS TERM_COLS < <(stty size 2>/dev/null)
-	if [ -n "${TERM_ROWS}" ] && [ -n "${TERM_COLS}" ]; then
-		echo "" >> ${TARGET_DIR}/etc/profile
-		echo "# Force setting terminal size." >> ${TARGET_DIR}/etc/profile
-		echo "stty rows ${TERM_ROWS} cols ${TERM_COLS} 2>/dev/null" >> ${TARGET_DIR}/etc/profile
-		echo "# Re-initialize terminal." >> ${TARGET_DIR}/etc/profile
-		echo "tput init 2>/dev/null" >> ${TARGET_DIR}/etc/profile
-	else
-		echo "Warning: unable to get host terminal size!"
-	fi
-else
-	echo "Warning: ${TARGET_DIR}/etc/profile not found!"
-fi
+# Serial console settings: see package/skeleton/.../profile.d/serial-console.sh
 step_end install-target
 
 stamp_installed

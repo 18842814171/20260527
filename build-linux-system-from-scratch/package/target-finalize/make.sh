@@ -62,13 +62,34 @@ if [ -d ${TARGET_DIR}/usr/share/X11/locale ]; then
 		fi
 	done > ${TARGET_DIR}/usr/share/X11/locale/locale.dir;
 fi
-rm -rf ${TARGET_DIR}/usr/include ${TARGET_DIR}/usr/share/aclocal \
-	${TARGET_DIR}/usr/lib/pkgconfig ${TARGET_DIR}/usr/share/pkgconfig \
-	${TARGET_DIR}/usr/lib/cmake ${TARGET_DIR}/usr/share/cmake \
-	${TARGET_DIR}/usr/lib/rpm ${TARGET_DIR}/usr/doc
+# Strip build-time dev files from the runtime rootfs. Keep usr/include when native
+# gcc is installed (needed for #include <stdio.h> etc. on the target).
+if [ -x ${TARGET_DIR}/usr/bin/gcc ]; then
+	echo ">>> Keeping ${TARGET_DIR}/usr/include for native gcc"
+	rm -rf ${TARGET_DIR}/usr/share/aclocal \
+		${TARGET_DIR}/usr/lib/pkgconfig ${TARGET_DIR}/usr/share/pkgconfig \
+		${TARGET_DIR}/usr/lib/cmake ${TARGET_DIR}/usr/share/cmake \
+		${TARGET_DIR}/usr/lib/rpm ${TARGET_DIR}/usr/doc
+else
+	rm -rf ${TARGET_DIR}/usr/include ${TARGET_DIR}/usr/share/aclocal \
+		${TARGET_DIR}/usr/lib/pkgconfig ${TARGET_DIR}/usr/share/pkgconfig \
+		${TARGET_DIR}/usr/lib/cmake ${TARGET_DIR}/usr/share/cmake \
+		${TARGET_DIR}/usr/lib/rpm ${TARGET_DIR}/usr/doc
+fi
 find ${TARGET_DIR}/usr/{lib,share}/ -name '*.cmake' -print0 | xargs -0 rm -f
-find ${TARGET_DIR}/lib/ ${TARGET_DIR}/usr/lib/ ${TARGET_DIR}/usr/libexec/ \
-	\( -name '*.a' -o -name '*.la' -o -name '*.prl' \) -print0 | xargs -0 rm -f
+# If native gcc is present, keep its internal static libs (e.g. libgcc.a)
+# under /usr/lib/gcc/**. Otherwise, native compilation/linking will fail.
+if [ -x ${TARGET_DIR}/usr/bin/gcc ]; then
+	find ${TARGET_DIR}/lib/ ${TARGET_DIR}/usr/libexec/ \
+		\( -name '*.a' -o -name '*.la' -o -name '*.prl' \) -print0 | xargs -0 rm -f
+	find ${TARGET_DIR}/usr/lib/ \
+		\( -path "${TARGET_DIR}/usr/lib/gcc" -o -path "${TARGET_DIR}/usr/lib/gcc/*" \) -prune -o \
+		-name 'libc_nonshared.a' -prune -o \
+		\( -name '*.a' -o -name '*.la' -o -name '*.prl' \) -print0 | xargs -0 rm -f
+else
+	find ${TARGET_DIR}/lib/ ${TARGET_DIR}/usr/lib/ ${TARGET_DIR}/usr/libexec/ \
+		\( -name '*.a' -o -name '*.la' -o -name '*.prl' \) -print0 | xargs -0 rm -f
+fi
 rm -rf ${TARGET_DIR}/usr/share/gdb
 rm -rf ${TARGET_DIR}/usr/share/zsh
 rm -rf ${TARGET_DIR}/usr/man ${TARGET_DIR}/usr/share/man
@@ -97,5 +118,17 @@ PATCHELF=${HOST_DIR}/bin/patchelf \
 PARALLEL_JOBS=${MAXNUM_CPUS} \
 PER_PACKAGE_DIR=${OUTPUT_DIR}/per-package \
 ${PROJECT_DIR}/support/scripts/fix-rpath target
+
+# Native gcc expects binutils in /usr/${GNU_TARGET_NAME}/bin (default gcc driver search),
+# but our native binutils installs to /usr/bin. Provide triplet-prefixed symlinks so
+# linking can find ld and friends (fixes: "ld: cannot find -lgcc", crt objects, etc.).
+if [ -x "${TARGET_DIR}/usr/bin/gcc" ]; then
+	mkdir -p "${TARGET_DIR}/usr/${GNU_TARGET_NAME}/bin"
+	for tool in ld as ar nm ranlib strip objcopy objdump readelf; do
+		if [ -x "${TARGET_DIR}/usr/bin/${tool}" ]; then
+			ln -sf "../../bin/${tool}" "${TARGET_DIR}/usr/${GNU_TARGET_NAME}/bin/${tool}"
+		fi
+	done
+fi
 
 touch ${TARGET_DIR}/usr
